@@ -7,5 +7,6 @@ data/for_hackathon/
 outputs/
 build/
 install/
+analysis/
 log/
 .DS_Store
