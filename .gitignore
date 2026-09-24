@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+*.egg-info/
+data/for_hackathon/
+outputs/
+build/
+install/
+log/
+.DS_Store

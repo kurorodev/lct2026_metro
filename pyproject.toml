@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "metro-lidar-guard"
+version = "0.2.0"
+description = "Reproducible ROS 2 tunnel obstacle detection baseline"
+requires-python = ">=3.8"
+dependencies = ["numpy>=1.24,<2", "rosbags==0.9.23"]
+
+[project.scripts]
+metro-guard = "metro_guard.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["metro_guard*"]
+
+[tool.setuptools.package-data]
+metro_guard = ["web/*.html", "web/*.js"]

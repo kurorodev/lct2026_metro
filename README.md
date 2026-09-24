@@ -1,0 +1,172 @@
+# Metro Guard
+
+Рабочий исследовательский прототип обнаружения препятствий в тоннеле по 3D LiDAR. Python/NumPy, ROS 2 Humble, Ubuntu 22.04, Docker. Работает на CPU; RTX 5070 Ti для этой версии не требуется.
+
+**Статус:** реализованы обработка bag, геометрический детектор, временное подтверждение, ROS-узел, RViz2, браузерный просмотрщик, тесты и воспроизводимый прогон. Качество на скрытых данных не подтверждено. На предоставленных проездах остаются подозрительные срабатывания на инфраструктуре. Это не готовый компонент управления торможением.
+
+## Быстрый просмотр уже полученных результатов
+
+На машине разработки:
+
+```bash
+.venv/bin/python -m metro_guard.cli serve outputs/release/doubleT_obstacle
+```
+
+Откройте http://127.0.0.1:8080. Переключайте 3D / сверху / сбоку, двигайте ползунок времени, вращайте сцену мышью. Для другого проезда укажите другую папку результатов. Просмотрщик локальный, внешних CDN нет.
+
+Новый полный прогон версии 0.2 находится в `outputs/release/`; сравнительный эксперимент с геометрией по рельсам — в `outputs/rail-guided-v2/`.
+
+## Docker: сборка и офлайн-обработка
+
+Команды ниже выполняются из корня проекта в Bash (Linux, macOS или WSL2):
+
+```bash
+docker build -t metro-guard:local .
+mkdir -p outputs
+docker run --rm \
+  -v "$PWD/data/for_hackathon:/data:ro" \
+  -v "$PWD/outputs:/output" \
+  metro-guard:local run /data/doubleT_obstacle --output /output/demo
+```
+
+Если архив ещё не распакован:
+
+```bash
+tar --zstd -xf data/for_hackathon.zst -C data
+```
+
+Нужно около 23.1 GB для распакованных bag, дополнительно место для архива, Docker и результатов. Данные не копируются внутрь образа. Повторная запись в существующую папку результатов требует `--overwrite`.
+
+Просмотр результата в контейнере:
+
+```bash
+docker run --rm -p 127.0.0.1:8080:8080 \
+  -v "$PWD/outputs:/output:ro" \
+  metro-guard:local serve /output/demo --host 0.0.0.0
+```
+
+## Windows и RTX 5070 Ti
+
+1. Установите WSL2 и Ubuntu 22.04: в PowerShell администратора `wsl --install -d Ubuntu-22.04`; при необходимости перезагрузитесь.
+2. Установите Docker Desktop, выберите WSL2 backend и включите интеграцию с Ubuntu.
+3. Перенесите проект и bag в файловую систему Ubuntu, например `~/projects/lct_detect`. Для больших bag предпочтительнее Linux filesystem, чем `/mnt/c`.
+4. Выполняйте команды сборки и запуска из терминала Ubuntu. Браузер Windows открывает `http://localhost:8080`.
+
+Текущий алгоритм не использует CUDA: флаг `--gpus all` не нужен. Добавление нейросети потребует отдельной проверки совместимости её CUDA/PyTorch сборки с RTX 5070 Ti. Сам этот Windows-ПК в рамках текущей проверки недоступен.
+
+Основание: [установка WSL](https://learn.microsoft.com/en-us/windows/wsl/install), [Docker и WSL2](https://docs.docker.com/desktop/features/wsl/), [размещение данных](https://docs.docker.com/desktop/features/wsl/best-practices/), [GPU в Docker Desktop](https://docs.docker.com/desktop/features/gpu/).
+
+## Демонстрация в ROS 2
+
+Автоматический запуск узла и проигрывателя в одном контейнере:
+
+```bash
+docker run --rm -it --shm-size=1g --name metro-demo \
+  -v "$PWD/data/for_hackathon:/data:ro" \
+  metro-guard:local demo /data/doubleT_obstacle /sensing/lidar/hesai128/pointcloud
+```
+
+Для пяти остальных проездов используется `/lidar_points`, например:
+
+```bash
+docker run --rm -it --shm-size=1g --name metro-demo \
+  -v "$PWD/data/for_hackathon:/data:ro" \
+  metro-guard:local demo /data/roundT_doubleT
+```
+
+В другом терминале, пока идёт playback:
+
+```bash
+docker exec metro-demo bash -lc 'source /opt/ros/humble/setup.bash && ros2 topic echo /metro_guard/result'
+```
+
+Для ручного управления:
+
+```bash
+docker run --rm -it --shm-size=1g --name metro-demo \
+  -v "$PWD/data/for_hackathon:/data:ro" \
+  metro-guard:local node --ros-args -p input_topic:=/lidar_points
+docker exec metro-demo bash -lc 'source /opt/ros/humble/setup.bash && ros2 bag play /data/roundT_doubleT --clock --delay 1 --read-ahead-queue-size 2'
+```
+
+На Linux с доступным X11 можно передать контейнеру `DISPLAY` и сокет `/tmp/.X11-unix`, затем запустить в этом же контейнере `rviz2 -d /app/rviz/metro_guard.rviz`. GUI требует настроенного доступа к дисплею; офлайн-просмотрщик обходится без него. На стенде RViz2 можно запускать также в уже настроенном ROS-окружении. При разнесении узлов по контейнерам нужно проверить DDS discovery, одинаковый `ROS_DOMAIN_ID` и сетевые настройки; режим `demo` избегает этой зависимости.
+
+Выходы:
+
+| Топик | Тип | Содержимое |
+|---|---|---|
+| `/metro_guard/result` | `std_msgs/String` | JSON: статус, дистанция, объекты, задержка, причины деградации |
+| `/metro_guard/cloud` | `sensor_msgs/PointCloud2` | Прореженное облако для визуализации в канонических осях |
+| `/metro_guard/markers` | `visualization_msgs/MarkerArray` | Параллелепипеды кандидатов и оценка коридора |
+
+Fixed Frame RViz: `metro_guard_lidar`. Это виртуальный кадр датчика, повернутый по конфигурации: X вперёд, Y влево, Z вверх. Он **не** является калиброванным `base_link` поезда. Время выходного облака сохраняется из входного header; не смешивайте его с часами bag.
+
+Входная подписка использует SensorData QoS (best effort). Ограниченная очередь содержит до двух ожидающих кадров; при переполнении удаляется старейший, счётчик — `dropped_frames`. Параметр ROS `queue_depth` допускает 1–10, значение 1 выбирает только последний ожидающий кадр. Визуализация ограничена 20 000 точек и 5 Hz (`visualization_hz`), формируется только при наличии подписчиков. При отсутствии сообщений больше секунды публикуется `unknown` и очищаются маркеры. Это видно в автоматическом ROS-тесте.
+
+Для ROS-режима важен `--shm-size=1g`: образ содержит `config/fastdds.xml` с увеличенным сегментом shared memory для сообщений размером до 24 MB. При пользовательском RMW или внешнем проигрывателе настройку надо согласовать для обоих процессов. `received_frames` считает дошедшие до callback облака, `dropped_frames` — только замены внутри узла, а не потери DDS. [Обоснование настройки Fast DDS](https://fast-dds.docs.eprosima.com/en/2.6.x/fastdds/transport/shared_memory/shared_memory.html).
+
+`demo` использует `--read-ahead-queue-size 2`. Для этих больших сообщений стандартный буфер проигрывателя вызывал долгую начальную загрузку, после которой он догонял расписание пачкой кадров. С буфером 2 в проверенном прогоне обработаны все 201 сообщения тяжёлого bag. Малый буфер может давать предупреждения `Message queue starved` при задержках диска; это отдельная метрика ввода, а не пропуск в детекторе. На другой машине настройку следует проверить повторно.
+
+## Конфигурация и результат
+
+Полный конфиг: [config/default.json](config/default.json). В офлайн-режиме: `--config config/default.json`. В ROS: `--ros-args -p config_path:=/app/config/default.json`. Собственный конфиг можно примонтировать в контейнер.
+
+| Параметр | Смысл |
+|---|---|
+| `geometry_model` | `baseline` по умолчанию; экспериментальный `rail_guided` включается отдельным конфигом |
+| `forward_axis` | Направление движения в исходном облаке; здесь предварительно `-y` |
+| `half_width` | Полуширина верхней части предполагаемого габарита, 1.45 m |
+| `underbody_half_width`, `full_width_height` | Сужение габарита в нижней части; требуется сверить с чертежом поезда |
+| `min_height`, `max_height` | Высоты кандидатов над оценённой поверхностью движения |
+| `boundary_margin` | Зона неопределённости у края габарита: 0 в baseline, 0.12 m в экспериментальном конфиге; кандидаты сохраняются, но не подтверждаются без достаточного числа внутренних точек |
+| `rail_gauge`, `rail_gauge_tolerance` | Гипотеза пары рельсов, 1.52 ± 0.12 m; не замена калибровке |
+| `min_range`, `max_range` | Область поиска; значение 220 m не является заявленной дальностью обнаружения |
+| `bin_size` | Шаг поперечных сечений тоннеля |
+| `confirm_frames` | Число последовательных ассоциированных наблюдений, по умолчанию 3 |
+| `max_frame_gap` | Разрыв, после которого треки сбрасываются |
+| `max_relative_speed` | Допуск для ассоциации; это не измерение скорости поезда |
+
+Статусы: `obstacle` — кандидат наблюдался достаточно кадров; `candidate` — ещё не подтверждён; `unknown` — не хватает геометрии/данных; `no_obstacle_observed` — в доступной оценке коридора кандидат не найден. Последнее **не означает разрешение движения**. `degraded` может сопровождать любой статус.
+
+Эксперимент `config/rail_guided.json` оценивает положение пути сначала по парным рельсам, затем по расстояниям до боковых конструкций, измеренным рядом с этими рельсами. Он уменьшил число подтверждений на нескольких обычных проездах, но и на `doubleT_obstacle`; без разметки это нельзя считать улучшением. Поэтому эксперимент не заменяет baseline по умолчанию. `temporally_confirmed` отделяет повторяемость наблюдения от `confirmed`, которое также учитывает пограничную неопределённость.
+
+`evidence_score` — эвристическая поддержка наблюдения, **не вероятность правильности**. `distance_m` — минимальная продольная X-координата точек подтверждённых кластеров относительно датчика, не расстояние от бампера и не длина вдоль криволинейного пути. Позиции/размеры — видимая часть объекта, не обязательно полный объект.
+
+## Проверка и эксперименты
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements-runtime.txt
+pip install --no-deps -e .
+python -m unittest discover -s tests -v
+python scripts/benchmark_all.py --output outputs/new-benchmark
+docker run --rm --shm-size=1g metro-guard:local python3 scripts/ros_smoke.py
+```
+
+Для аудита и проекций дополнительно `pip install -r requirements-analysis.txt`, затем `python scripts/audit_data.py`.
+
+Каждый запуск сохраняет:
+
+- `detections.jsonl` — результат каждого кадра, в том числе причины неопределённости;
+- `summary.json` — настройки, SHA256 настроек, задержки и частоту обработки;
+- `frames.json` и `index.html` — браузерную демонстрацию;
+- сводный `benchmark.json` при обработке всех bag.
+
+Задержка `processing_ms` относится к ядру, без чтения CDR и визуализации; `offline_throughput_fps` включает чтение, декодирование и экспорт. `callback_to_result_ms` в ROS включает локальную очередь и декодирование, но не задержку от датчика до подписки. Не смешивайте эти метрики.
+
+Разметка для измерения качества: JSONL с `frame_index`, `obstacle_present` (`true` / `false` / `null`, где null — не проверено), при наличии `nearest_distance_m`. Размечайте кадры независимо от результатов алгоритма. Пример формата, **не реальные метки**:
+
+```json
+{"frame_index": 0, "obstacle_present": null, "nearest_distance_m": null}
+```
+
+В просмотрщике есть раздел «Разметка кадра». Включите «Скрыть результат алгоритма», изучите облако и задайте одну из трёх меток. Расстояние и комментарий необязательны. Метки сохраняются локально в браузере и выгружаются кнопкой «Скачать метки JSONL». Метки не создаются автоматически из предсказаний. Экспорт содержит timestamp и имя bag; оценщик проверяет их соответствие, чтобы случайно не сравнить разные записи. Для подробной разметки экспортируйте каждый кадр с большим числом точек: `--export-every 1 --preview-points 20000`. Отсутствие точек за пределами видимости не является доказательством отсутствия объекта.
+
+```bash
+python -m metro_guard.evaluate outputs/demo/detections.jsonl labels/reviewed.jsonl --output outputs/metrics.json
+```
+
+Оценщик откажется считать качество без просмотренных меток. Он считает покадровые precision/recall; объектные и событийные метрики требуют отдельной разметки. Отсутствие подтверждения на положительном кадре, включая `unknown`, считается пропуском.
+
+Подробности: [разбор ТЗ и данных](docs/ANALYSIS.md), [архитектура и алгоритм](docs/ARCHITECTURE.md), [результаты экспериментов](docs/EXPERIMENTS.md).

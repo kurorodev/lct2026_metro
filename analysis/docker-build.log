@@ -1,0 +1,121 @@
+#0 building with "orbstack" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 1.19kB done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/ros:humble-ros-base-jammy@sha256:1813d3c85d7f96ff7d3012d865204583255740182db5d0065f8f8cd029a83138
+#2 ...
+
+#3 [auth] library/ros:pull token for registry-1.docker.io
+#3 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/ros:humble-ros-base-jammy@sha256:1813d3c85d7f96ff7d3012d865204583255740182db5d0065f8f8cd029a83138
+#2 DONE 1.5s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 190B done
+#4 DONE 0.0s
+
+#5 [ 1/13] FROM docker.io/library/ros:humble-ros-base-jammy@sha256:1813d3c85d7f96ff7d3012d865204583255740182db5d0065f8f8cd029a83138
+#5 DONE 0.0s
+
+#6 [internal] load build context
+#6 transferring context: 77.22kB 0.0s done
+#6 DONE 0.0s
+
+#7 [ 2/13] RUN apt-get update && apt-get install -y --no-install-recommends     python3-pip ros-humble-sensor-msgs-py ros-humble-visualization-msgs     ros-humble-rosbag2-storage-default-plugins ros-humble-rviz2     && rm -rf /var/lib/apt/lists/*
+#7 CACHED
+
+#8 [ 3/13] WORKDIR /app
+#8 CACHED
+
+#9 [ 4/13] COPY requirements-runtime.txt ./
+#9 CACHED
+
+#10 [ 5/13] RUN python3 -m pip install --no-cache-dir -r requirements-runtime.txt
+#10 CACHED
+
+#11 [ 6/13] COPY pyproject.toml setup.py ./
+#11 DONE 0.1s
+
+#12 [ 7/13] COPY metro_guard ./metro_guard
+#12 DONE 0.0s
+
+#13 [ 8/13] RUN python3 -m pip install --no-cache-dir --no-deps .     && cd /tmp && python3 -c "from metro_guard import __version__; print(__version__)"     && python3 -c "from pathlib import Path; import metro_guard; assert (Path(metro_guard.__file__).parent / 'web' / 'review.js').is_file()"     && metro-guard --help
+#13 0.333 Processing /app
+#13 0.400   Installing build dependencies: started
+#13 3.857   Installing build dependencies: finished with status 'done'
+#13 3.859   Getting requirements to build wheel: started
+#13 3.936   Getting requirements to build wheel: finished with status 'done'
+#13 3.978   Installing backend dependencies: started
+#13 7.468   Installing backend dependencies: finished with status 'done'
+#13 7.470   Preparing metadata (pyproject.toml): started
+#13 7.537   Preparing metadata (pyproject.toml): finished with status 'done'
+#13 7.538 Building wheels for collected packages: metro-lidar-guard
+#13 7.538   Building wheel for metro-lidar-guard (pyproject.toml): started
+#13 7.620   Building wheel for metro-lidar-guard (pyproject.toml): finished with status 'done'
+#13 7.621   Created wheel for metro-lidar-guard: filename=metro_lidar_guard-0.2.0-py3-none-any.whl size=25836 sha256=09a323b4078261003b16a5a73d8956f825cf46fa583e1fb6996cb1f429686ecd
+#13 7.621   Stored in directory: /tmp/pip-ephem-wheel-cache-3xr3kusj/wheels/9b/2c/d1/15e20a2b97f37ccf65a87ba1049c73a9076d0bf0fbaf814e83
+#13 7.621 Successfully built metro-lidar-guard
+#13 7.622 Installing collected packages: metro-lidar-guard
+#13 7.635 Successfully installed metro-lidar-guard-0.2.0
+#13 7.635 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+#13 7.668 0.2.0
+#13 7.774 usage: metro-guard [-h] {run,serve} ...
+#13 7.774 
+#13 7.774 Metro Guard — offline LiDAR obstacle baseline
+#13 7.774 
+#13 7.774 positional arguments:
+#13 7.774   {run,serve}
+#13 7.774     run        Process every frame and export a review dashboard
+#13 7.774     serve      Serve an exported dashboard (localhost by default)
+#13 7.774 
+#13 7.774 options:
+#13 7.774   -h, --help   show this help message and exit
+#13 DONE 7.8s
+
+#14 [ 9/13] COPY config ./config
+#14 DONE 0.0s
+
+#15 [10/13] COPY scripts ./scripts
+#15 DONE 0.0s
+
+#16 [11/13] COPY tests ./tests
+#16 DONE 0.0s
+
+#17 [12/13] COPY rviz ./rviz
+#17 DONE 0.0s
+
+#18 [13/13] RUN python3 -m unittest discover -s tests -v
+#18 0.109 test_axes (test_core.CloudTests) ... ok
+#18 0.113 test_padded_rows_big_endian (test_core.CloudTests) ... ok
+#18 0.113 test_real_layout_unaligned_timestamp (test_core.CloudTests) ... ok
+#18 0.113 test_asymmetric_walls_do_not_shift_rail_center (test_core.DetectionTests) ... ok
+#18 0.130 test_bent_empty_tunnel (test_core.DetectionTests) ... ok
+#18 0.140 test_boundary_points_remain_visible_but_uncertain (test_core.DetectionTests) ... ok
+#18 0.171 test_ceiling_is_not_obstacle (test_core.DetectionTests) ... ok
+#18 0.183 test_empty_is_unknown (test_core.DetectionTests) ... ok
+#18 0.183 test_gap_resets_confirmation (test_core.DetectionTests) ... ok
+#18 0.237 test_invalid_config (test_core.DetectionTests) ... ok
+#18 0.237 test_nonfinite_and_behind_points (test_core.DetectionTests) ... ok
+#18 0.237 test_rails_and_low_sidewalk_are_background (test_core.DetectionTests) ... ok
+#18 0.252 test_straight_empty_tunnel (test_core.DetectionTests) ... ok
+#18 0.262 test_temporal_confirmation_and_distance (test_core.DetectionTests) ... ok
+#18 0.302 test_voxels_keep_separate_objects (test_core.DetectionTests) ... ok
+#18 0.302 test_confusion_and_unknown_miss (test_evaluate.EvaluationTests) ... ok
+#18 0.302 test_labels_from_other_bag_are_rejected (test_evaluate.EvaluationTests) ... ok
+#18 0.302 test_no_labels_is_not_perfect_score (test_evaluate.EvaluationTests) ... ok
+#18 0.302 
+#18 0.302 ----------------------------------------------------------------------
+#18 0.302 Ran 18 tests in 0.194s
+#18 0.302 
+#18 0.302 OK
+#18 DONE 0.3s
+
+#19 exporting to image
+#19 exporting layers 0.0s done
+#19 writing image sha256:015e4ce5648987fb75ecc893831ad204826e4d9e605584fdc2f7b3e3bf4df89b
+#19 writing image sha256:015e4ce5648987fb75ecc893831ad204826e4d9e605584fdc2f7b3e3bf4df89b done
+#19 naming to docker.io/library/metro-guard:local done
+#19 DONE 0.1s

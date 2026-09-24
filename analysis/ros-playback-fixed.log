@@ -1,0 +1,86 @@
+[INFO] [1790090029.371087617] [metro_guard]: Metro Guard started; output frame: metro_guard_lidar (forward / left / up)
+stdin is not a terminal device. Keyboard handling disabled.[INFO] [1790090029.637727713] [rosbag2_storage]: Opened database '/data/doubleT_obstacle/doubleT_obstacle_0.db3' for READ_ONLY.
+[INFO] [1790090029.637932422] [rosbag2_player]: Set rate to 1
+[INFO] [1790090029.640730394] [rosbag2_player]: Adding keyboard callbacks.
+[INFO] [1790090029.640755977] [rosbag2_player]: Press SPACE for Pause/Resume
+[INFO] [1790090029.640764227] [rosbag2_player]: Press CURSOR_RIGHT for Play Next Message
+[INFO] [1790090029.640770894] [rosbag2_player]: Press CURSOR_UP for Increase Rate 10%
+[INFO] [1790090029.640776310] [rosbag2_player]: Press CURSOR_DOWN for Decrease Rate 10%
+[INFO] [1790090029.640831936] [rosbag2_player]: Sleep 1000000000 ns
+[INFO] [1790090030.644138145] [rosbag2_storage]: Opened database '/data/doubleT_obstacle/doubleT_obstacle_0.db3' for READ_ONLY.
+[WARN] [1790090030.762782290] [rosbag2_player]: Message queue starved. Messages will be delayed. Consider increasing the --read-ahead-queue-size option.
+[WARN] [1790090031.949748036] [rosbag2_player]: Message queue starved. Messages will be delayed. Consider increasing the --read-ahead-queue-size option.
+[WARN] [1790090032.950826777] [rosbag2_player]: Message queue starved. Messages will be delayed. Consider increasing the --read-ahead-queue-size option.
+[WARN] [1790090033.951796142] [rosbag2_player]: Message queue starved. Messages will be delayed. Consider increasing the --read-ahead-queue-size option.
+[WARN] [1790090034.953770220] [rosbag2_player]: Message queue starved. Messages will be delayed. Consider increasing the --read-ahead-queue-size option.
+[WARN] [1790090035.953818414] [rosbag2_player]: Message queue starved. Messages will be delayed. Consider increasing the --read-ahead-queue-size option.
+[WARN] [1790090037.137449686] [rosbag2_player]: Message queue starved. Messages will be delayed. Consider increasing the --read-ahead-queue-size option.
+[WARN] [1790090038.140246351] [rosbag2_player]: Message queue starved. Messages will be delayed. Consider increasing the --read-ahead-queue-size option.
+[WARN] [1790090039.140286003] [rosbag2_player]: Message queue starved. Messages will be delayed. Consider increasing the --read-ahead-queue-size option.
+[WARN] [1790090040.143338837] [rosbag2_player]: Message queue starved. Messages will be delayed. Consider increasing the --read-ahead-queue-size option.
+[WARN] [1790090041.143592948] [rosbag2_player]: Message queue starved. Messages will be delayed. Consider increasing the --read-ahead-queue-size option.
+[WARN] [1790090042.143690559] [rosbag2_player]: Message queue starved. Messages will be delayed. Consider increasing the --read-ahead-queue-size option.
+[WARN] [1790090043.149926199] [rosbag2_player]: Message queue starved. Messages will be delayed. Consider increasing the --read-ahead-queue-size option.
+[WARN] [1790090044.150008227] [rosbag2_player]: Message queue starved. Messages will be delayed. Consider increasing the --read-ahead-queue-size option.
+[WARN] [1790090045.263397416] [rosbag2_player]: Message queue starved. Messages will be delayed. Consider increasing the --read-ahead-queue-size option.
+[WARN] [1790090046.443380629] [rosbag2_player]: Message queue starved. Messages will be delayed. Consider increasing the --read-ahead-queue-size option.
+[WARN] [1790090047.572237433] [rosbag2_player]: Message queue starved. Messages will be delayed. Consider increasing the --read-ahead-queue-size option.
+[WARN] [1790090048.744251566] [rosbag2_player]: Message queue starved. Messages will be delayed. Consider increasing the --read-ahead-queue-size option.
+[WARN] [1790090049.746780355] [rosbag2_player]: Message queue starved. Messages will be delayed. Consider increasing the --read-ahead-queue-size option.
+[WARN] [1790090050.747495677] [rosbag2_player]: Message queue starved. Messages will be delayed. Consider increasing the --read-ahead-queue-size option.
+{
+  "real_bag_ros_smoke": "passed",
+  "bag": "/data/doubleT_obstacle",
+  "results": 201,
+  "input_points_range": [
+    921600,
+    921600
+  ],
+  "dropped_in_worker": 0,
+  "received_by_subscription": 201,
+  "callback_to_result_ms_p95": 60.997787993983366,
+  "visualization_enabled": true,
+  "queue_depth": 2,
+  "read_ahead_queue_size": 2,
+  "visualization_ms_p95": 0.9592130081728101,
+  "stage_ms": {
+    "queue": {
+      "mean": 1.3273831140377388,
+      "p95": 3.631891988334246,
+      "max": 68.19515599636361
+    },
+    "cdr": {
+      "mean": 0.7864859059252614,
+      "p95": 1.6652990016154945,
+      "max": 7.412826002109796
+    },
+    "xyz": {
+      "mean": 2.287414855965464,
+      "p95": 2.514553998480551,
+      "max": 6.145904000732116
+    },
+    "core": {
+      "mean": 46.398511179389814,
+      "p95": 51.402826997218654,
+      "max": 70.5152089940384
+    },
+    "previous_publish": {
+      "mean": 0.13830958180991348,
+      "p95": 0.16145900008268654,
+      "max": 1.0536720074014738
+    },
+    "previous_iteration": {
+      "mean": 50.077930379071645,
+      "p95": 55.89384800987318,
+      "max": 78.44166300492361
+    },
+    "arrival_interval": {
+      "mean": 107.8719971543676,
+      "p95": 112.85207599576097,
+      "max": 1407.8025420021731
+    }
+  },
+  "source_duration_s": 20.400028944015503,
+  "receipt_duration_s": 20.275287304000813,
+  "quality_evaluated": false
+}

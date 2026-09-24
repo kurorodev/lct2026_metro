@@ -1,0 +1,65 @@
+[INFO] [1790089540.783542182] [metro_guard]: Metro Guard started; output frame: metro_guard_lidar (forward / left / up)
+stdin is not a terminal device. Keyboard handling disabled.[INFO] [1790089540.929290355] [rosbag2_storage]: Opened database '/data/doubleT_obstacle/doubleT_obstacle_0.db3' for READ_ONLY.
+[INFO] [1790089540.929312440] [rosbag2_player]: Set rate to 1
+[INFO] [1790089540.931834324] [rosbag2_player]: Adding keyboard callbacks.
+[INFO] [1790089540.931861576] [rosbag2_player]: Press SPACE for Pause/Resume
+[INFO] [1790089540.931879869] [rosbag2_player]: Press CURSOR_RIGHT for Play Next Message
+[INFO] [1790089540.931887036] [rosbag2_player]: Press CURSOR_UP for Increase Rate 10%
+[INFO] [1790089540.931892745] [rosbag2_player]: Press CURSOR_DOWN for Decrease Rate 10%
+[INFO] [1790089540.931927498] [rosbag2_player]: Sleep 1000000000 ns
+[INFO] [1790089541.938752984] [rosbag2_storage]: Opened database '/data/doubleT_obstacle/doubleT_obstacle_0.db3' for READ_ONLY.
+{
+  "real_bag_ros_smoke": "passed",
+  "bag": "/data/doubleT_obstacle",
+  "results": 159,
+  "input_points_range": [
+    921600,
+    921600
+  ],
+  "dropped_in_worker": 42,
+  "received_by_subscription": 201,
+  "callback_to_result_ms_p95": 85.06135698844446,
+  "visualization_enabled": true,
+  "queue_depth": 2,
+  "visualization_ms_p95": 1.4532560016959906,
+  "stage_ms": {
+    "queue": {
+      "mean": 2.6811844028265996,
+      "p95": 19.183808795060028,
+      "max": 77.15995599573944
+    },
+    "cdr": {
+      "mean": 1.3050562521822036,
+      "p95": 2.2898694995092193,
+      "max": 13.52609199238941
+    },
+    "xyz": {
+      "mean": 2.827464540012374,
+      "p95": 3.7558809082838693,
+      "max": 64.66361800266895
+    },
+    "core": {
+      "mean": 45.91517793642483,
+      "p95": 58.6390332886367,
+      "max": 79.38425599422771
+    },
+    "previous_publish": {
+      "mean": 0.1474765479731602,
+      "p95": 0.18413040379527956,
+      "max": 0.5156020051799715
+    },
+    "previous_iteration": {
+      "mean": 50.60472547182075,
+      "p95": 65.9003597946139,
+      "max": 154.72774699446745
+    },
+    "arrival_interval": {
+      "mean": 131.58285356562,
+      "p95": 115.66715658846076,
+      "max": 5647.642586991424
+    }
+  },
+  "source_duration_s": 20.400028944015503,
+  "receipt_duration_s": 15.92063697699632,
+  "quality_evaluated": false
+}

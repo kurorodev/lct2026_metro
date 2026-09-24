@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "frames": 41,
+  "bag": "doubleT_obstacle",
+  "error": "",
+  "console_exceptions": 0,
+  "mobile_overflow": false,
+  "manual_review_tested": true,
+  "test_labels_removed": true,
+  "video": true
+}

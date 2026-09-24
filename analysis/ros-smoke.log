@@ -1,0 +1,7 @@
+[INFO] [1790093348.566560897] [metro_guard]: Metro Guard started; output frame: metro_guard_lidar (forward / left / up)
+{
+  "ros_smoke": "passed",
+  "results": 10,
+  "clouds": 4,
+  "marker_messages": 6
+}

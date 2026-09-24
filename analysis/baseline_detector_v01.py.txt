@@ -1,0 +1,231 @@
+"""Causal, class-agnostic baseline. Scores express evidence, not probabilities.
+
+No global map or frame-to-frame point subtraction: ego-motion is not available.
+The corridor is an estimate and must be validated against train calibration.
+"""
+import itertools
+import time
+import numpy as np
+from .cloud import canonical
+from .config import Config
+
+
+NEIGHBORS = tuple(itertools.product((-1,0,1), repeat=3))
+
+
+def roadbed_height(ground):
+    # A low percentile follows drainage troughs and falsely lifts the rails.
+    # Select the dominant low surface, excluding the ceiling and tall obstacles.
+    low = float(np.percentile(ground[:,2],8))
+    values = ground[(ground[:,2]>=low)&(ground[:,2]<=low+0.6),2]
+    edges = np.arange(low,low+0.681,0.08)
+    counts,_ = np.histogram(values,bins=edges)
+    index = int(np.argmax(counts))
+    return float((edges[index]+edges[index+1])/2)
+
+
+def rail_pair(section, center, floor, config):
+    """Optional pair hypothesis; never infer a rail from a single lateral peak."""
+    low = section[(section[:,2]>floor+0.15)&(section[:,2]<floor+0.8)]
+    edges = np.arange(center-2.0,center+2.051,0.05)
+    hist,_=np.histogram(low[:,1],bins=edges)
+    possibilities=[]
+    gap_min=int(np.ceil((config.rail_gauge-config.rail_gauge_tolerance)/0.05))
+    gap_max=int(np.floor((config.rail_gauge+config.rail_gauge_tolerance)/0.05))
+    for i in range(len(hist)):
+        if hist[i]<4: continue
+        for j in range(i+gap_min,min(i+gap_max+1,len(hist))):
+            middle=(edges[i]+edges[j]+0.05)/2
+            if hist[j]<4 or abs(middle-center)>0.65: continue
+            score=min(hist[i],hist[j])/(1+2*abs(middle-center))
+            possibilities.append((score,i,j,middle))
+    if not possibilities: return None
+    _,i,j,middle=max(possibilities)
+    heads=[]
+    for k in (i,j):
+        strip=low[np.abs(low[:,1]-(edges[k]+0.025))<0.06]
+        heads.append(float(np.percentile(strip[:,2],80)))
+    if abs(heads[0]-heads[1])>0.25: return None
+    return float(middle),float(np.mean(heads))
+
+
+def clusters(points, cell_size):
+    """Connected occupied voxels; retain point counts and actual, not voxel bounds."""
+    if not len(points):
+        return []
+    grid = np.floor(points / cell_size).astype(np.int32)
+    cells, inverse, counts = np.unique(grid, axis=0, return_inverse=True, return_counts=True)
+    lookup = {tuple(cell): i for i,cell in enumerate(cells)}
+    labels = np.full(len(cells), -1, dtype=np.int32)
+    components = []
+    for i in range(len(cells)):
+        if labels[i] >= 0:
+            continue
+        label = len(components)
+        labels[i] = label
+        stack, members = [i], []
+        while stack:
+            j = stack.pop()
+            members.append(j)
+            x,y,z = cells[j]
+            for dx,dy,dz in NEIGHBORS:
+                k = lookup.get((x+dx,y+dy,z+dz))
+                if k is not None and labels[k] < 0:
+                    labels[k] = label
+                    stack.append(k)
+        components.append(members)
+    point_labels = labels[inverse]
+    order = np.argsort(point_labels, kind='stable')
+    lengths = np.bincount(point_labels, minlength=len(components))
+    groups = np.split(order, np.cumsum(lengths)[:-1])
+    return [points[g] for g in groups]
+
+
+class Detector:
+    def __init__(self, config=None):
+        self.config = (config or Config()).validate()
+        self.last_stamp = None
+        self.tracks = []
+        self.next_id = 1
+
+    def corridor(self, p):
+        c = self.config
+        nodes = []
+        center = c.initial_center
+        # Sorted bins avoid scanning the entire cloud for each cross section.
+        indices = np.floor((p[:,0]-c.min_range)/c.bin_size).astype(int)
+        order = np.argsort(indices, kind='stable')
+        bins, starts = np.unique(indices[order], return_index=True)
+        groups = {int(b):p[g] for b,g in zip(bins,np.split(order,starts[1:]))}
+        last_floor = None
+        for i in range(int(np.ceil((c.max_range-c.min_range)/c.bin_size))):
+            x = c.min_range+(i+0.5)*c.bin_size
+            section = groups.get(i)
+            if section is None:
+                continue
+            # Estimate roadbed first, independently of wall/ceiling density.
+            ground = section[(np.abs(section[:,1]-center)<c.half_width+0.4)]
+            if len(ground) < c.min_ground_points:
+                continue
+            floor = roadbed_height(ground)
+            wall = section[(section[:,2]>floor+0.6)&(section[:,2]<floor+2.6)]
+            left = wall[(wall[:,1]<center-c.half_width)&(wall[:,1]>center-4.0),1]
+            right = wall[(wall[:,1]>center+c.half_width)&(wall[:,1]<center+4.0),1]
+            proposals = []
+            # Use nearest structural wall modes, not the center of a double tunnel.
+            if len(left)>=12:
+                proposals.append(float(np.percentile(left,75))+c.nominal_wall_offset)
+            if len(right)>=12:
+                proposals.append(float(np.percentile(right,25))-c.nominal_wall_offset)
+            reliable = len(proposals)==2 and abs(proposals[0]-proposals[1])<1.2
+            if proposals:
+                proposal = float(np.mean(proposals)) if reliable else min(proposals,key=lambda v:abs(v-center))
+                change = np.clip(proposal-center,-c.max_center_slope*c.bin_size,c.max_center_slope*c.bin_size)
+                center += float(change)*0.7
+            # Refresh floor at updated center; reject unphysical jumps, not obstacles.
+            ground = section[np.abs(section[:,1]-center)<c.half_width+0.3]
+            if len(ground)<c.min_ground_points:
+                continue
+            floor = roadbed_height(ground)
+            if last_floor is not None and abs(floor-last_floor)>0.65:
+                continue
+            ceiling=float(np.percentile(section[:,2],98))
+            nodes.append([x,center,floor,1.0 if reliable else 0.5,ceiling])
+            last_floor = floor
+        nodes=np.asarray(nodes,dtype=np.float32).reshape(-1,5)
+        rails=[]
+        for row in nodes:
+            section=groups[int(round((float(row[0])-c.min_range)/c.bin_size-0.5))]
+            pair=rail_pair(section,float(row[1]),float(row[2]),c)
+            if pair is not None:
+                rails.append([float(row[0]),pair[0],pair[1]-float(row[2])])
+        # Roadbed is not the train running surface. Use paired rail evidence to
+        # estimate their height difference; this also avoids alarming on rails.
+        if len(rails)>=2:
+            rails=np.asarray(rails)
+            elevation=float(np.median(rails[:,2]))
+            nodes[:,2]+=elevation
+            for row in nodes:
+                if rails[0,0]-c.bin_size <= row[0] <= rails[-1,0]+c.bin_size:
+                    rail_center=float(np.interp(row[0],rails[:,0],rails[:,1]))
+                    row[1]=rail_center
+        return nodes
+
+    def process(self, xyz, stamp):
+        started = time.perf_counter()
+        c = self.config
+        if not np.isfinite(stamp):
+            raise ValueError('Nonfinite timestamp')
+        gap = self.last_stamp is not None and (stamp<=self.last_stamp or stamp-self.last_stamp>c.max_frame_gap)
+        dt = stamp-self.last_stamp if self.last_stamp is not None and not gap else 0.1
+        if gap:
+            self.tracks = []
+        self.last_stamp = stamp
+        if xyz.ndim != 2 or xyz.shape[1] != 3:
+            raise ValueError('Expected Nx3 points')
+        valid = np.isfinite(xyz).all(axis=1)&np.any(xyz!=0,axis=1)
+        p = canonical(xyz[valid],c.forward_axis)
+        p = p[(p[:,0]>=c.min_range)&(p[:,0]<=c.max_range)&(np.abs(p[:,1])<60)&(np.abs(p[:,2])<25)]
+        nodes = self.corridor(p) if len(p)>=c.min_ground_points else np.empty((0,5))
+        candidates = []
+        usable = np.zeros(len(p),dtype=bool)
+        if len(nodes)>=3:
+            centers = np.interp(p[:,0],nodes[:,0],nodes[:,1])
+            floors = np.interp(p[:,0],nodes[:,0],nodes[:,2])
+            nearest = np.searchsorted(nodes[:,0],p[:,0]).clip(0,len(nodes)-1)
+            previous = (nearest-1).clip(0,len(nodes)-1)
+            distance_to_node = np.minimum(np.abs(p[:,0]-nodes[nearest,0]),np.abs(p[:,0]-nodes[previous,0]))
+            usable = distance_to_node<=c.bin_size
+            relative = p[:,2]-floors
+            ceilings=np.interp(p[:,0],nodes[:,0],nodes[:,4])
+            half_width=c.underbody_half_width+(c.half_width-c.underbody_half_width)*np.clip(relative/c.full_width_height,0,1)
+            mask = usable&(np.abs(p[:,1]-centers)<half_width)&(relative>c.min_height)&(relative<c.max_height)&(p[:,2]<ceilings-0.2)
+            q = p[mask]
+            # Fixed voxel size keeps component boundaries continuous across ranges.
+            for group in clusters(q,0.35):
+                lo,hi = group.min(axis=0),group.max(axis=0)
+                extent = hi-lo
+                if len(group)<c.min_cluster_points or max(extent[1:])<c.min_cluster_extent:
+                    continue
+                position = (lo+hi)/2
+                confidence = float(np.interp(position[0],nodes[:,0],nodes[:,3]))
+                candidates.append({'min':lo.tolist(),'max':hi.tolist(), 'center':position.tolist(),
+                    'distance_m':float(lo[0]), 'points':len(group), 'geometry_support':round(confidence,3),
+                    'evidence_score':round(min(1.,len(group)/30.)*min(1.,max(extent[1:])/0.4)*confidence,3)})
+        candidates.sort(key=lambda o:o['distance_m'])
+        overflow = len(candidates)>c.max_candidates
+        candidates = candidates[:c.max_candidates]
+        unmatched = set(range(len(self.tracks)))
+        for obj in candidates:
+            choices = []
+            for i in unmatched:
+                old = self.tracks[i]
+                delta = np.abs(np.array(obj['center'])-old['center'])
+                if delta[0]<1.0+c.max_relative_speed*dt and delta[1]<0.8 and delta[2]<0.8:
+                    choices.append((float(delta[0]+2*delta[1]+2*delta[2]),i))
+            if choices:
+                _,idx = min(choices)
+                unmatched.remove(idx)
+                old = self.tracks[idx]
+                obj.update(id=old['id'],hits=old['hits']+1)
+            else:
+                obj.update(id=self.next_id,hits=1)
+                self.next_id+=1
+            obj['confirmed'] = obj['hits']>=c.confirm_frames
+        self.tracks = candidates
+        confirmed = [o for o in candidates if o['confirmed']]
+        reasons = []
+        if gap: reasons.append('timestamp_discontinuity')
+        if len(nodes)<3: reasons.append('insufficient_corridor_geometry')
+        if len(nodes) and float(np.mean(nodes[:,3]))<0.8: reasons.append('ambiguous_corridor_geometry')
+        if overflow: reasons.append('candidate_limit_reached')
+        status = 'obstacle' if confirmed else ('candidate' if candidates else ('unknown' if reasons else 'no_obstacle_observed'))
+        elapsed = (time.perf_counter()-started)*1000
+        return {'timestamp':float(stamp),'status':status,'obstacle_detected':bool(confirmed),
+                'distance_m':min((o['distance_m'] for o in confirmed),default=None),
+                'candidate_distance_m':min((o['distance_m'] for o in candidates),default=None),
+                'input_points':len(xyz),'valid_points':int(valid.sum()),'roi_points':len(p),
+                'geometry_supported_points':int(usable.sum()),
+                'geometry_range_m':float(nodes[-1,0]) if len(nodes) else 0.,
+                'degraded':bool(reasons),'reasons':reasons,'processing_ms':elapsed,
+                'corridor':nodes.tolist(),'objects':candidates},p

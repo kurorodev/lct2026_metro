@@ -1,0 +1,45 @@
+Panels:
+  - Class: rviz_common/Displays
+    Name: Displays
+Visualization Manager:
+  Class: ""
+  Global Options:
+    Fixed Frame: metro_guard_lidar
+    Background Color: 12; 20; 32
+    Frame Rate: 30
+  Displays:
+    - Class: rviz_default_plugins/Grid
+      Name: Grid
+      Enabled: true
+      Cell Size: 1
+      Plane Cell Count: 100
+    - Class: rviz_default_plugins/PointCloud2
+      Name: LiDAR
+      Enabled: true
+      Topic:
+        Value: /metro_guard/cloud
+        Reliability Policy: Best Effort
+        Durability Policy: Volatile
+        Depth: 2
+      Style: Points
+      Size (Pixels): 2
+      Color Transformer: AxisColor
+      Axis: Z
+    - Class: rviz_default_plugins/MarkerArray
+      Name: Detections
+      Enabled: true
+      Topic:
+        Value: /metro_guard/markers
+        Reliability Policy: Reliable
+        Durability Policy: Volatile
+        Depth: 10
+  Views:
+    Current:
+      Class: rviz_default_plugins/Orbit
+      Distance: 50
+      Pitch: 0.55
+      Yaw: 3.5
+      Focal Point:
+        X: 25
+        Y: 0
+        Z: 0

@@ -1,0 +1,56 @@
+{
+  "real_bag_ros_smoke": "passed",
+  "bag": "/data/doubleT_obstacle",
+  "results": 201,
+  "input_points_range": [
+    921600,
+    921600
+  ],
+  "dropped_in_worker": 0,
+  "received_by_subscription": 201,
+  "callback_to_result_ms_p95": 62.87094599974807,
+  "visualization_enabled": true,
+  "queue_depth": 2,
+  "read_ahead_queue_size": 2,
+  "visualization_ms_p95": 0.9766970033524558,
+  "stage_ms": {
+    "queue": {
+      "mean": 2.1373092040358186,
+      "p95": 3.385692005394958,
+      "max": 108.5102380020544
+    },
+    "cdr": {
+      "mean": 0.7784887119538072,
+      "p95": 1.5196270105661824,
+      "max": 12.129345996072516
+    },
+    "xyz": {
+      "mean": 2.317772143441067,
+      "p95": 2.49044899828732,
+      "max": 10.821333999047056
+    },
+    "core": {
+      "mean": 47.53538651770648,
+      "p95": 57.53556800482329,
+      "max": 68.82708400371484
+    },
+    "previous_publish": {
+      "mean": 0.1276890103344977,
+      "p95": 0.16724099987186491,
+      "max": 0.46580799971707165
+    },
+    "previous_iteration": {
+      "mean": 51.19852974633825,
+      "p95": 61.65176199283451,
+      "max": 77.20646601228509
+    },
+    "arrival_interval": {
+      "mean": 100.73787852208389,
+      "p95": 110.5249630054459,
+      "max": 437.49889099854045
+    }
+  },
+  "source_duration_s": 20.400028944015503,
+  "receipt_duration_s": 20.249133913006517,
+  "quality_evaluated": false
+}

@@ -1,0 +1,33 @@
+{
+  "queue_2_visualization": {
+    "real_bag_ros_smoke": "passed",
+    "bag": "/data/doubleT_obstacle",
+    "results": 159,
+    "input_points_range": [
+      921600,
+      921600
+    ],
+    "dropped_in_worker": 42,
+    "received_by_subscription": 201,
+    "callback_to_result_ms_p95": 76.82105490384855,
+    "visualization_enabled": true,
+    "visualization_ms_p95": 1.0910866985796013,
+    "quality_evaluated": false
+  },
+  "queue_4_visualization": {
+    "real_bag_ros_smoke": "passed",
+    "bag": "/data/doubleT_obstacle",
+    "results": 163,
+    "input_points_range": [
+      921600,
+      921600
+    ],
+    "dropped_in_worker": 38,
+    "received_by_subscription": 201,
+    "callback_to_result_ms_p95": 121.20571999839746,
+    "visualization_enabled": true,
+    "queue_depth": 4,
+    "visualization_ms_p95": 0.9433359955437481,
+    "quality_evaluated": false
+  }
+}

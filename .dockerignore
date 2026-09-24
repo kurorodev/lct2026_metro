@@ -1,0 +1,12 @@
+*
+!Dockerfile
+!requirements-runtime.txt
+!pyproject.toml
+!setup.py
+!metro_guard/**
+!config/**
+!scripts/**
+!tests/**
+!rviz/**
+**/__pycache__
+**/*.pyc
