@@ -1,0 +1,89 @@
+name: metro-guard
+
+x-logging: &logging
+  driver: json-file
+  options:
+    max-size: "10m"
+    max-file: "3"
+
+services:
+  processor:
+    profiles: [batch]
+    image: ${METRO_IMAGE:-metro-guard:server}
+    build:
+      context: .
+      dockerfile: Dockerfile.server
+    user: "${APP_UID:-1000}:${APP_GID:-1000}"
+    init: true
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    network_mode: none
+    mem_limit: 1g
+    memswap_limit: 1g
+    cpus: 1.0
+    pids_limit: 64
+    tmpfs:
+      - /tmp:size=64m,mode=1777
+    volumes:
+      - type: bind
+        source: ${DATA_DIR:-./data}
+        target: /data
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ${OUTPUT_DIR:-./outputs}
+        target: /output
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ${CONFIG_FILE:-./config/mounted_lidar.json}
+        target: /config/detector.json
+        read_only: true
+        bind:
+          create_host_path: false
+    command: [run, "/data/${BAG_NAME:-cloud_with_fake_obj}", --config, /config/detector.json,
+              --output, "/output/${RUN_NAME:-cloud-mounted}",
+              --export-every, "${EXPORT_EVERY:-10}", --preview-points, "${PREVIEW_POINTS:-2000}"]
+    logging: *logging
+    restart: "no"
+    stop_grace_period: 30s
+
+  web:
+    image: nginx:stable-alpine@sha256:0985e772fb9f729e6fa0980da05fca5d9c468e870eed43071545afa9d2e27d94
+    user: "${APP_UID:-1000}:${APP_GID:-1000}"
+    entrypoint: [nginx, -g, "daemon off;"]
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    mem_limit: 64m
+    memswap_limit: 64m
+    cpus: 0.5
+    pids_limit: 32
+    tmpfs:
+      - /tmp:size=16m,mode=1777
+    volumes:
+      - type: bind
+        source: ./deploy/nginx.conf
+        target: /etc/nginx/nginx.conf
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ${OUTPUT_DIR:-./outputs}/${RUN_NAME:-cloud-mounted}
+        target: /srv/results
+        read_only: true
+        bind:
+          create_host_path: false
+    ports:
+      - "${BIND_ADDRESS:-127.0.0.1}:${HTTP_PORT:-8080}:8080"
+    healthcheck:
+      test: [CMD, wget, -q, -O, /dev/null, "http://127.0.0.1:8080/readyz"]
+      interval: 15s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
+    logging: *logging
+    restart: unless-stopped
+    stop_grace_period: 10s

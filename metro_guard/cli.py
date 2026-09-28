@@ -6,23 +6,28 @@ import hashlib
 import json
 from pathlib import Path
 import shutil
+import resource
+import sys
 import time
 import numpy as np
 from . import __version__
 from .bag import frames
 from .config import Config
 from .detector import Detector
+from .output import staged_output
 
 
 def run_bag(args):
     config = Config.load(args.config)
-    detector = Detector(config)
-    out = Path(args.output)
-    out.mkdir(parents=True,exist_ok=True)
-    if any((out/f).exists() for f in ('detections.jsonl','frames.json','summary.json')) and not args.overwrite:
-        raise ValueError('Output already contains results; use a new directory or --overwrite')
     if args.limit is not None and args.limit<1 or args.export_every<1 or args.preview_points<1:
         raise ValueError('Limits must be positive')
+    with staged_output(args.output, args.overwrite) as out:
+        summary = export_bag(args, config, out)
+    print(json.dumps(summary,indent=2,ensure_ascii=False))
+
+
+def export_bag(args, config, out):
+    detector = Detector(config)
     elapsed, statuses, degraded, count = [], Counter(), 0, 0
     started = time.perf_counter()
     first_stamp, last_stamp = None, None
@@ -61,13 +66,14 @@ def run_bag(args):
                'config_sha256':hashlib.sha256(canonical_config.encode()).hexdigest(),
                'frames':count,'preview_frames':preview_count,'duration_s':last_stamp-first_stamp,
                'wall_s':wall,'offline_throughput_fps':count/wall,'status_counts':dict(statuses),
+               'peak_rss_mib':resource.getrusage(resource.RUSAGE_SELF).ru_maxrss/(1024**2 if sys.platform=='darwin' else 1024),
                'degraded_frames':degraded,
                'processing_ms':dict(zip(('p50','p95','p99','max'),np.percentile(elapsed,[50,95,99,100]).tolist())),
                'quality_metrics':None,'quality_note':'No ground-truth labels: precision, recall and detection distance are not evaluated.'}
     (out/'summary.json').write_text(json.dumps(summary,indent=2,ensure_ascii=False)+'\n')
     shutil.copyfile(Path(__file__).parent/'web'/'index.html',out/'index.html')
     shutil.copyfile(Path(__file__).parent/'web'/'review.js',out/'review.js')
-    print(json.dumps(summary,indent=2,ensure_ascii=False))
+    return summary
 
 
 def main():
