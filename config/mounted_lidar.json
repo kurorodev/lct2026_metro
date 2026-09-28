@@ -1,0 +1,8 @@
+{
+  "geometry_model": "rail_guided",
+  "lidar_height": 1.075,
+  "initial_center": 0.0,
+  "forward_axis": "-y",
+  "min_height": 0.10,
+  "boundary_margin": 0.12
+}

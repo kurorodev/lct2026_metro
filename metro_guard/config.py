@@ -2,6 +2,7 @@ from dataclasses import asdict, dataclass
 import json
 import math
 from pathlib import Path
+from typing import Optional
 
 
 @dataclass
@@ -17,6 +18,7 @@ class Config:
     min_height: float = 0.28
     max_height: float = 3.2
     initial_center: float = 0.0
+    lidar_height: Optional[float] = None
     nominal_wall_offset: float = 2.5
     rail_gauge: float = 1.52
     rail_gauge_tolerance: float = 0.12
@@ -36,6 +38,8 @@ class Config:
         if self.geometry_model not in ('baseline','rail_guided'):
             raise ValueError('geometry_model must be baseline or rail_guided')
         for name,value in asdict(self).items():
+            if name == 'lidar_height' and value is None:
+                continue
             if name not in ('forward_axis','geometry_model') and (isinstance(value,bool) or not isinstance(value,(int,float)) or not math.isfinite(value)):
                 raise ValueError('Invalid numeric parameter: '+name)
         for name in ('min_ground_points','min_cluster_points','confirm_frames','max_candidates'):
@@ -43,6 +47,8 @@ class Config:
                 raise ValueError(name+' must be a positive integer')
         if not 0 < self.min_range < self.max_range <= 1000:
             raise ValueError('Invalid detection range')
+        if self.lidar_height is not None and (self.lidar_height <= 0 or self.geometry_model != 'rail_guided'):
+            raise ValueError('lidar_height must be positive and requires rail_guided geometry')
         if not 0 < self.min_height < self.max_height or not 0 < self.underbody_half_width <= self.half_width < self.nominal_wall_offset:
             raise ValueError('Invalid clearance envelope')
         if not 0 <= self.boundary_margin < self.underbody_half_width:

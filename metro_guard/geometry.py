@@ -28,6 +28,9 @@ def estimate_corridor(points, config):
     bins, starts = np.unique(indices[order], return_index=True)
     groups = {int(b): points[g] for b, g in zip(bins, np.split(order, starts[1:]))}
     nodes, rails = [], []
+    if c.lidar_height is not None:
+        # Local mounting anchor, not a constant floor along a graded tunnel.
+        rails.append([0.0, c.initial_center, -c.lidar_height])
     offsets = [[], []]
 
     for i in range(int(np.ceil((c.max_range - c.min_range) / c.bin_size))):

@@ -128,8 +128,37 @@ class DetectionTests(unittest.TestCase):
         self.assertEqual(sorted(map(len,clusters(p,.35))),[2,2])
 
     def test_invalid_config(self):
-        for c in [Config(max_range=-1),Config(confirm_frames=0),Config(half_width=float('nan')),Config(bin_size=0)]:
+        for c in [Config(max_range=-1),Config(confirm_frames=0),Config(half_width=float('nan')),Config(bin_size=0),
+                  Config(lidar_height=1.075),Config(geometry_model='rail_guided',lidar_height=-1),
+                  Config(geometry_model='rail_guided',lidar_height=float('nan'))]:
             with self.assertRaises(ValueError): c.validate()
+
+    def test_mounted_lidar_low_obstacle_on_graded_rails(self):
+        rng = np.random.default_rng(42)
+        x = rng.uniform(2, 80, 18000)
+        z = -1.075 - .006*x
+        rails = np.column_stack([x, rng.choice([-.76,.76], len(x)) + rng.normal(0,.008,len(x)), z])
+        bed = np.column_stack([x, rng.uniform(-2.5,2.5,len(x)), z-.25])
+        walls = np.column_stack([x, rng.choice([-2.5,2.5],len(x)), z+rng.uniform(0,3.8,len(x))])
+        background = np.vstack([rails,bed,walls])
+        config = Config(forward_axis='x',geometry_model='rail_guided',lidar_height=1.075,min_height=.1)
+        empty, _ = Detector(config).process(background,1.)
+        self.assertFalse(empty['objects'])
+        nodes = np.asarray(empty['corridor'])
+        self.assertLess(np.max(np.abs(nodes[:,2]-(-1.075-.006*nodes[:,0]))), .1)
+        obj = rng.uniform([24.9,-.95,0],[25.1,.95,.2],(600,3))
+        obj[:,2] += -1.075-.006*obj[:,0]
+        detector = Detector(config)
+        for stamp in (1.,1.1,1.2):
+            result,_ = detector.process(np.vstack([background,obj]),stamp)
+        self.assertTrue(result['obstacle_detected'])
+        self.assertAlmostEqual(result['distance_m'],24.9,delta=.1)
+
+    def test_mount_anchor_is_not_observed_corridor(self):
+        config = Config(geometry_model='rail_guided',lidar_height=1.075)
+        result,_ = Detector(config).process(np.zeros((0,3)),1.)
+        self.assertEqual(result['status'],'unknown')
+        self.assertFalse(result['corridor'])
 
 
 if __name__=='__main__': unittest.main()
