@@ -160,6 +160,6 @@ bash scripts/server_smoke.sh
 
 Исходный `Dockerfile` и `scripts/entrypoint.sh` сохранены для ROS 2 Humble, playback и RViz. Этот образ работает с Ubuntu 22.04 внутри контейнера; устанавливать Humble непосредственно в Ubuntu 24.04 не требуется. На сервере 2 ГБ основной профиль специально использует лёгкий офлайн-образ. Живой режим требует отдельной проверки DDS, сети датчика, очередей и задержек на самом сервере; эта конфигурация не объявляет его проверенным.
 
-Описание существующего ROS-запуска — в [README](../README.md#демонстрация-в-ros-2). Чтобы применить новую установку датчика, передайте узлу `--ros-args -p config_path:=/app/config/mounted_lidar.json`. Офлайн-режим читает те же ROS 2 bag напрямую и не нуждается в запуске ROS.
+Описание ROS-запуска находится в [руководстве проекта](PROJECT_GUIDE.md#ros-2-узел-и-rviz). Чтобы применить новую установку датчика, передайте узлу `--ros-args -p config_path:=/app/config/mounted_lidar.json`. Офлайн-режим читает те же ROS 2 bag напрямую и не нуждается в запуске ROS.
 
 Технические основания: [Compose: ограничения, restart, healthcheck и volumes](https://docs.docker.com/reference/compose-file/services/), [Nginx: раздача статических файлов](https://nginx.org/en/docs/http/ngx_http_core_module.html). Команда `metro_guard.cli serve` остаётся для локальной разработки; [Python не рекомендует http.server для production](https://docs.python.org/3/library/http.server.html).
