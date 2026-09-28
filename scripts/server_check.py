@@ -3,6 +3,7 @@ import argparse
 import json
 import os
 from pathlib import Path
+import socket
 import shutil
 import subprocess
 
@@ -74,6 +75,32 @@ def check(mode):
             raise ValueError('Browser preview exceeds 64 MiB; re-export with larger EXPORT_EVERY '
                              'or smaller PREVIEW_POINTS to a new RUN_NAME')
         print(f'Ready export: {run}\nFrames processed: {summary["frames"]}')
+        published = service['ports'][0]
+        port = int(published['published'])
+        probe_address = '127.0.0.1' if published.get('host_ip') in ('0.0.0.0','::') else published['host_ip']
+        probe = socket.socket()
+        try:
+            occupied = probe.connect_ex((probe_address, port)) == 0
+        finally:
+            probe.close()
+        if occupied:
+            listing = subprocess.run(['docker','compose','ps','-q','web'],cwd=ROOT,
+                                     text=True,capture_output=True,check=True).stdout.strip()
+            is_our_port = False
+            if listing:
+                ports = subprocess.run(['docker','inspect','--format',
+                    '{{json .NetworkSettings.Ports}}',listing.splitlines()[0]],cwd=ROOT,
+                    text=True,capture_output=True,check=True)
+                bindings = json.loads(ports.stdout).get('8080/tcp') or []
+                is_our_port = any(b.get('HostPort') == str(port) and
+                                   b.get('HostIp') in (published.get('host_ip',''), '0.0.0.0','::')
+                                   for b in bindings)
+            if not is_our_port:
+                raise ValueError(f'TCP port {port} is already in use by the old site. Inspect with '
+                                 f'"sudo ss -ltnp \'sport = :{port}\'" and '
+                                 f'"sudo docker ps --format \'{{{{.Names}}}} {{{{.Ports}}}}\'"; '
+                                 'stop the old web frontend, then run this check again.')
+        print(f'Web bind: {published.get("host_ip")}:{port}')
     print('Preflight passed. Data and outputs are bind mounts, outside container storage.')
 
 
