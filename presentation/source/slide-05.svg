@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+<defs><linearGradient id="fade" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#FC3777"/><stop offset="1" stop-color="#FF0053"/></linearGradient></defs>
+<rect width="1600" height="900" fill="#FFF9FC"/>
+<path d="M0 0H1600V18H0Z" fill="#FF0053"/>
+<text x="82" y="91" font-family="Montserrat,Arial,sans-serif" font-size="17" font-weight="750" fill="#FF0053" text-anchor="start" letter-spacing="2.1">04 · ДАННЫЕ</text>
+<text x="82" y="160" font-family="Montserrat,Arial,sans-serif" font-size="42" font-weight="760" fill="#310F53" text-anchor="start" >Установка известна; полный контур поезда — пока нет</text>
+<circle cx="1513" cy="82" r="33" fill="#FFD6E4"/><path d="M1500 82h26m-13-13 13 13-13 13" stroke="#FF0053" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<line x1="82" y1="827" x2="1518" y2="827" stroke="#EADFE8" stroke-width="2"/>
+<text x="82" y="864" font-family="Montserrat,Arial,sans-serif" font-size="16" font-weight="650" fill="#716879" text-anchor="start" >METRO GUARD  ·  LIDAR / ROS 2</text>
+<text x="1518" y="864" font-family="Montserrat,Arial,sans-serif" font-size="16" font-weight="650" fill="#716879" text-anchor="end" >ЛЦТ 2026  ·  05</text>
+<rect x="82" y="222" width="438" height="122" rx="20" fill="#FFFFFF" stroke="#FFD6E4" stroke-width="2"/>
+<text x="110" y="282" font-family="Montserrat,Arial,sans-serif" font-size="40" font-weight="780" fill="#FF0053" text-anchor="start" >3 998</text>
+<text x="260" y="282" font-family="Montserrat,Arial,sans-serif" font-size="19" font-weight="600" fill="#310F53" text-anchor="start" >кадров в 7 bag</text>
+<rect x="562" y="222" width="438" height="122" rx="20" fill="#FFFFFF" stroke="#FFD6E4" stroke-width="2"/>
+<text x="590" y="282" font-family="Montserrat,Arial,sans-serif" font-size="40" font-weight="780" fill="#FF0053" text-anchor="start" >1 510</text>
+<text x="740" y="282" font-family="Montserrat,Arial,sans-serif" font-size="19" font-weight="600" fill="#310F53" text-anchor="start" >кадров нового сценария</text>
+<rect x="1042" y="222" width="438" height="122" rx="20" fill="#FFFFFF" stroke="#FFD6E4" stroke-width="2"/>
+<text x="1070" y="282" font-family="Montserrat,Arial,sans-serif" font-size="40" font-weight="780" fill="#FF0053" text-anchor="start" >10</text>
+<text x="1220" y="282" font-family="Montserrat,Arial,sans-serif" font-size="19" font-weight="600" fill="#310F53" text-anchor="start" >искусственных объектов</text>
+<rect x="82" y="386" width="694" height="350" rx="22" fill="#310F53" stroke="none" stroke-width="1"/>
+<text x="122" y="435" font-family="Montserrat,Arial,sans-serif" font-size="17" font-weight="750" fill="#FFD6E4" text-anchor="start" >ПОЗИЦИЯ LiDAR</text>
+<text x="122" y="513" font-family="Montserrat,Arial,sans-serif" font-size="43" font-weight="760" fill="#FFFFFF" text-anchor="start" >1,075 м</text>
+<text x="122" y="551" font-family="Montserrat,Arial,sans-serif" font-size="19" font-weight="500" fill="#FFD6E4" text-anchor="start" >над головкой рельса</text>
+<text x="122" y="625" font-family="Montserrat,Arial,sans-serif" font-size="25" font-weight="700" fill="#FFFFFF" text-anchor="start" >По центру состава</text>
+<text x="122" y="681" font-family="Montserrat,Arial,sans-serif" font-size="16" font-weight="450" fill="#E8DCF0" text-anchor="start" >Из слов заказчика; отдельного TF/полной калибровки нет.</text>
+<rect x="804" y="386" width="714" height="350" rx="22" fill="#FFFFFF" stroke="#FFD6E4" stroke-width="2"/>
+<text x="843" y="435" font-family="Montserrat,Arial,sans-serif" font-size="17" font-weight="750" fill="#FF0053" text-anchor="start" >СЦЕНАРИЙ ПРОВЕРКИ</text>
+<text x="843" y="488" font-family="Montserrat,Arial,sans-serif" font-size="22" font-weight="650" fill="#310F53" text-anchor="start" >Крупные и малые объекты;</text><text x="843" y="526" font-family="Montserrat,Arial,sans-serif" font-size="22" font-weight="650" fill="#310F53" text-anchor="start" >центр, край и вне габарита;</text><text x="843" y="564" font-family="Montserrat,Arial,sans-serif" font-size="22" font-weight="650" fill="#310F53" text-anchor="start" >предметы на рельсе и подвесе.</text>
+<line x1="843" y1="626" x2="1473" y2="626" stroke="#EADFE8" stroke-width="2"/>
+<text x="843" y="671" font-family="Montserrat,Arial,sans-serif" font-size="17" font-weight="500" fill="#716879" text-anchor="start" >Шаг «≈ 100 м» — приблизительный, не калибровка дальности.</text>
+<text x="843" y="708" font-family="Montserrat,Arial,sans-serif" font-size="16" font-weight="650" fill="#FF0053" text-anchor="start" >Профиль: config/mounted_lidar.json</text>
+</svg>

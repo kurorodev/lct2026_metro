@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+<defs><linearGradient id="fade" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#FC3777"/><stop offset="1" stop-color="#FF0053"/></linearGradient></defs>
+<rect width="1600" height="900" fill="#FFF9FC"/>
+<path d="M0 0H1600V18H0Z" fill="#FF0053"/>
+<text x="82" y="91" font-family="Montserrat,Arial,sans-serif" font-size="17" font-weight="750" fill="#FF0053" text-anchor="start" letter-spacing="2.1">11 · ПЛАН РАЗВИТИЯ</text>
+<text x="82" y="160" font-family="Montserrat,Arial,sans-serif" font-size="42" font-weight="760" fill="#310F53" text-anchor="start" >Четыре шага от прототипа к оценке на стенде</text>
+<circle cx="1513" cy="82" r="33" fill="#FFD6E4"/><path d="M1500 82h26m-13-13 13 13-13 13" stroke="#FF0053" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<line x1="82" y1="827" x2="1518" y2="827" stroke="#EADFE8" stroke-width="2"/>
+<text x="82" y="864" font-family="Montserrat,Arial,sans-serif" font-size="16" font-weight="650" fill="#716879" text-anchor="start" >METRO GUARD  ·  LIDAR / ROS 2</text>
+<text x="1518" y="864" font-family="Montserrat,Arial,sans-serif" font-size="16" font-weight="650" fill="#716879" text-anchor="end" >ЛЦТ 2026  ·  12</text>
+<rect x="82" y="267" width="335" height="305" rx="22" fill="#FFFFFF" stroke="#FFD6E4" stroke-width="2"/>
+<circle cx="124" cy="316" r="23" fill="#FFF0F6" stroke="none" stroke-width="1"/>
+<text x="124" y="323" font-family="Montserrat,Arial,sans-serif" font-size="15" font-weight="750" fill="#FF0053" text-anchor="middle" >01</text>
+<text x="109" y="389" font-family="Montserrat,Arial,sans-serif" font-size="24" font-weight="720" fill="#310F53" text-anchor="start" >Калибровка</text>
+<text x="109" y="448" font-family="Montserrat,Arial,sans-serif" font-size="18" font-weight="500" fill="#1C1D22" text-anchor="start" >Получить контур поезда;</text>
+<text x="109" y="480" font-family="Montserrat,Arial,sans-serif" font-size="18" font-weight="500" fill="#1C1D22" text-anchor="start" >проверить оси, TF и углы.</text>
+<path d="M420 407h24m-8-8 8 8-8 8" stroke="#FF0053" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="445" y="267" width="335" height="305" rx="22" fill="#FFFFFF" stroke="#FFD6E4" stroke-width="2"/>
+<circle cx="487" cy="316" r="23" fill="#FFF0F6" stroke="none" stroke-width="1"/>
+<text x="487" y="323" font-family="Montserrat,Arial,sans-serif" font-size="15" font-weight="750" fill="#FF0053" text-anchor="middle" >02</text>
+<text x="472" y="389" font-family="Montserrat,Arial,sans-serif" font-size="24" font-weight="720" fill="#310F53" text-anchor="start" >Разметка</text>
+<text x="472" y="448" font-family="Montserrat,Arial,sans-serif" font-size="18" font-weight="500" fill="#1C1D22" text-anchor="start" >Добавить независимые</text>
+<text x="472" y="480" font-family="Montserrat,Arial,sans-serif" font-size="18" font-weight="500" fill="#1C1D22" text-anchor="start" >событийные метки и split.</text>
+<path d="M783 407h24m-8-8 8 8-8 8" stroke="#FF0053" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="808" y="267" width="335" height="305" rx="22" fill="#FFFFFF" stroke="#FFD6E4" stroke-width="2"/>
+<circle cx="850" cy="316" r="23" fill="#FFF0F6" stroke="none" stroke-width="1"/>
+<text x="850" y="323" font-family="Montserrat,Arial,sans-serif" font-size="15" font-weight="750" fill="#FF0053" text-anchor="middle" >03</text>
+<text x="835" y="389" font-family="Montserrat,Arial,sans-serif" font-size="24" font-weight="720" fill="#310F53" text-anchor="start" >Метрики</text>
+<text x="835" y="448" font-family="Montserrat,Arial,sans-serif" font-size="18" font-weight="500" fill="#1C1D22" text-anchor="start" >Измерить precision/recall,</text>
+<text x="835" y="480" font-family="Montserrat,Arial,sans-serif" font-size="18" font-weight="500" fill="#1C1D22" text-anchor="start" >ложные тревоги и дальность.</text>
+<path d="M1146 407h24m-8-8 8 8-8 8" stroke="#FF0053" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="1171" y="267" width="335" height="305" rx="22" fill="#FFFFFF" stroke="#FFD6E4" stroke-width="2"/>
+<circle cx="1213" cy="316" r="23" fill="#FFF0F6" stroke="none" stroke-width="1"/>
+<text x="1213" y="323" font-family="Montserrat,Arial,sans-serif" font-size="15" font-weight="750" fill="#FF0053" text-anchor="middle" >04</text>
+<text x="1198" y="389" font-family="Montserrat,Arial,sans-serif" font-size="24" font-weight="720" fill="#310F53" text-anchor="start" >Стенд</text>
+<text x="1198" y="448" font-family="Montserrat,Arial,sans-serif" font-size="18" font-weight="500" fill="#1C1D22" text-anchor="start" >Проверить Intel/Ubuntu/</text>
+<text x="1198" y="480" font-family="Montserrat,Arial,sans-serif" font-size="18" font-weight="500" fill="#1C1D22" text-anchor="start" >ROS 2 и живой LiDAR.</text>
+<rect x="82" y="627" width="1436" height="112" rx="20" fill="#310F53" stroke="none" stroke-width="1"/>
+<text x="116" y="675" font-family="Montserrat,Arial,sans-serif" font-size="15" font-weight="750" fill="#FFD6E4" text-anchor="start" >ГОТОВНОСТЬ СЕЙЧАС</text>
+<text x="116" y="713" font-family="Montserrat,Arial,sans-serif" font-size="21" font-weight="650" fill="#FFFFFF" text-anchor="start" >Демонстрация и воспроизводимый анализ — да.</text>
+<text x="772" y="713" font-family="Montserrat,Arial,sans-serif" font-size="21" font-weight="650" fill="#FFD6E4" text-anchor="start" >Автономная система безопасности — нет.</text>
+</svg>

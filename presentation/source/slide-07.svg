@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+<defs><linearGradient id="fade" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#FC3777"/><stop offset="1" stop-color="#FF0053"/></linearGradient></defs>
+<rect width="1600" height="900" fill="#FFF9FC"/>
+<path d="M0 0H1600V18H0Z" fill="#FF0053"/>
+<text x="82" y="91" font-family="Montserrat,Arial,sans-serif" font-size="17" font-weight="750" fill="#FF0053" text-anchor="start" letter-spacing="2.1">06 · ГАБАРИТ И КОНФИГУРАЦИЯ</text>
+<text x="82" y="160" font-family="Montserrat,Arial,sans-serif" font-size="42" font-weight="760" fill="#310F53" text-anchor="start" >Положение рельсов оценивается автоматически</text>
+<circle cx="1513" cy="82" r="33" fill="#FFD6E4"/><path d="M1500 82h26m-13-13 13 13-13 13" stroke="#FF0053" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<line x1="82" y1="827" x2="1518" y2="827" stroke="#EADFE8" stroke-width="2"/>
+<text x="82" y="864" font-family="Montserrat,Arial,sans-serif" font-size="16" font-weight="650" fill="#716879" text-anchor="start" >METRO GUARD  ·  LIDAR / ROS 2</text>
+<text x="1518" y="864" font-family="Montserrat,Arial,sans-serif" font-size="16" font-weight="650" fill="#716879" text-anchor="end" >ЛЦТ 2026  ·  07</text>
+<rect x="82" y="226" width="744" height="492" rx="22" fill="#FFFFFF" stroke="#FFD6E4" stroke-width="2"/>
+<text x="120" y="270" font-family="Montserrat,Arial,sans-serif" font-size="16" font-weight="750" fill="#FF0053" text-anchor="start" >УПРОЩЁННАЯ 3D-СХЕМА</text>
+<path d="M220 658 363 391m188 267 103-267" fill="none" stroke="#8A83D1" stroke-width="10"/><path d="M256 590h354m-309-75h325m-278-74h295m-250-74h266" stroke="#FFD6E4" stroke-width="5" fill="none"/>
+<path d="M347 562 419 405l119 0 63 157z" fill="#FF0053" opacity=".1" stroke="#FF0053" stroke-width="3" stroke-dasharray="9 8"/>
+<circle cx="327" cy="522" r="6" fill="#FF0053" stroke="none" stroke-width="1"/>
+<circle cx="352" cy="487" r="6" fill="#FF0053" stroke="none" stroke-width="1"/>
+<circle cx="394" cy="484" r="6" fill="#FF0053" stroke="none" stroke-width="1"/>
+<circle cx="417" cy="454" r="6" fill="#FF0053" stroke="none" stroke-width="1"/>
+<circle cx="552" cy="494" r="6" fill="#FF0053" stroke="none" stroke-width="1"/>
+<circle cx="579" cy="461" r="6" fill="#FF0053" stroke="none" stroke-width="1"/>
+<circle cx="430" cy="382" r="6" fill="#FF0053" stroke="none" stroke-width="1"/>
+<circle cx="610" cy="434" r="6" fill="#FF0053" stroke="none" stroke-width="1"/>
+<circle cx="699" cy="376" r="6" fill="#FF0053" stroke="none" stroke-width="1"/>
+<circle cx="267" cy="565" r="6" fill="#FF0053" stroke="none" stroke-width="1"/>
+<circle cx="540" cy="530" r="6" fill="#FF0053" stroke="none" stroke-width="1"/>
+<text x="220" y="690" font-family="Montserrat,Arial,sans-serif" font-size="16" font-weight="600" fill="#716879" text-anchor="start" >X вперёд  ·  Y влево  ·  Z вверх</text>
+<rect x="854" y="226" width="664" height="492" rx="22" fill="#FFF1F6" stroke="none" stroke-width="1"/>
+<text x="891" y="274" font-family="Montserrat,Arial,sans-serif" font-size="16" font-weight="750" fill="#FF0053" text-anchor="start" >НАСТРОЙКИ ПРОФИЛЯ</text>
+<text x="891" y="343" font-family="Montserrat,Arial,sans-serif" font-size="34" font-weight="760" fill="#310F53" text-anchor="start" >1,075 м</text>
+<text x="1090" y="342" font-family="Montserrat,Arial,sans-serif" font-size="18" font-weight="500" fill="#1C1D22" text-anchor="start" >опорная высота LiDAR</text>
+<line x1="891" y1="369" x2="1479" y2="369" stroke="#EADFE8" stroke-width="2"/>
+<text x="891" y="421" font-family="Montserrat,Arial,sans-serif" font-size="28" font-weight="720" fill="#310F53" text-anchor="start" >0,10 м</text>
+<text x="1060" y="419" font-family="Montserrat,Arial,sans-serif" font-size="17" font-weight="500" fill="#1C1D22" text-anchor="start" >минимальная высота</text>
+<text x="891" y="486" font-family="Montserrat,Arial,sans-serif" font-size="28" font-weight="720" fill="#310F53" text-anchor="start" >0,12 м</text>
+<text x="1060" y="484" font-family="Montserrat,Arial,sans-serif" font-size="17" font-weight="500" fill="#1C1D22" text-anchor="start" >неопределённость края</text>
+<line x1="891" y1="514" x2="1479" y2="514" stroke="#EADFE8" stroke-width="2"/>
+<text x="891" y="558" font-family="Montserrat,Arial,sans-serif" font-size="17" font-weight="500" fill="#1C1D22" text-anchor="start" >Высота используется как начальная опора.</text><text x="891" y="588" font-family="Montserrat,Arial,sans-serif" font-size="17" font-weight="500" fill="#1C1D22" text-anchor="start" >Профиль не заменяет полную трансформацию</text><text x="891" y="618" font-family="Montserrat,Arial,sans-serif" font-size="17" font-weight="500" fill="#1C1D22" text-anchor="start" >LiDAR ↔ состав и утверждённый контур.</text>
+<text x="891" y="685" font-family="Montserrat,Arial,sans-serif" font-size="16" font-weight="700" fill="#FF0053" text-anchor="start" >Ширина 1,45 м — предварительное допущение.</text>
+</svg>

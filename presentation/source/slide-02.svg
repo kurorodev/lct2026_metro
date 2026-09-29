@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+<defs><linearGradient id="fade" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#FC3777"/><stop offset="1" stop-color="#FF0053"/></linearGradient></defs>
+<rect width="1600" height="900" fill="#FFF9FC"/>
+<path d="M0 0H1600V18H0Z" fill="#FF0053"/>
+<text x="82" y="91" font-family="Montserrat,Arial,sans-serif" font-size="17" font-weight="750" fill="#FF0053" text-anchor="start" letter-spacing="2.1">01 · ЗАДАЧА</text>
+<text x="82" y="160" font-family="Montserrat,Arial,sans-serif" font-size="42" font-weight="760" fill="#310F53" text-anchor="start" >Опасный объект может быть любым</text>
+<circle cx="1513" cy="82" r="33" fill="#FFD6E4"/><path d="M1500 82h26m-13-13 13 13-13 13" stroke="#FF0053" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<line x1="82" y1="827" x2="1518" y2="827" stroke="#EADFE8" stroke-width="2"/>
+<text x="82" y="864" font-family="Montserrat,Arial,sans-serif" font-size="16" font-weight="650" fill="#716879" text-anchor="start" >METRO GUARD  ·  LIDAR / ROS 2</text>
+<text x="1518" y="864" font-family="Montserrat,Arial,sans-serif" font-size="16" font-weight="650" fill="#716879" text-anchor="end" >ЛЦТ 2026  ·  02</text>
+<text x="84" y="221" font-family="Montserrat,Arial,sans-serif" font-size="24" font-weight="450" fill="#716879" text-anchor="start" >В габарите движения важны не класс и название объекта, а его положение относительно пути.</text>
+<rect x="82" y="278" width="890" height="450" rx="24" fill="#FFFFFF" stroke="#FFD6E4" stroke-width="2"/>
+<text x="119" y="326" font-family="Montserrat,Arial,sans-serif" font-size="17" font-weight="750" fill="#FF0053" text-anchor="start" >СИГНАЛ ОТ 3D LiDAR</text>
+<path d="M177 635 408 395m140 240 166-240" fill="none" stroke="#8A83D1" stroke-width="8" opacity=".85"/>
+<line x1="189" y1="622" x2="377" y2="622" stroke="#FFD6E4" stroke-width="3"/>
+<line x1="215" y1="594" x2="403" y2="594" stroke="#FFD6E4" stroke-width="3"/>
+<line x1="244" y1="565" x2="432" y2="565" stroke="#FFD6E4" stroke-width="3"/>
+<line x1="274" y1="535" x2="462" y2="535" stroke="#FFD6E4" stroke-width="3"/>
+<line x1="305" y1="505" x2="493" y2="505" stroke="#FFD6E4" stroke-width="3"/>
+<line x1="339" y1="473" x2="527" y2="473" stroke="#FFD6E4" stroke-width="3"/>
+<line x1="376" y1="436" x2="564" y2="436" stroke="#FFD6E4" stroke-width="3"/>
+<line x1="413" y1="400" x2="601" y2="400" stroke="#FFD6E4" stroke-width="3"/>
+<line x1="554" y1="622" x2="742" y2="622" stroke="#FFD6E4" stroke-width="3"/>
+<line x1="576" y1="594" x2="764" y2="594" stroke="#FFD6E4" stroke-width="3"/>
+<line x1="598" y1="565" x2="786" y2="565" stroke="#FFD6E4" stroke-width="3"/>
+<line x1="620" y1="535" x2="808" y2="535" stroke="#FFD6E4" stroke-width="3"/>
+<line x1="642" y1="505" x2="830" y2="505" stroke="#FFD6E4" stroke-width="3"/>
+<line x1="665" y1="473" x2="853" y2="473" stroke="#FFD6E4" stroke-width="3"/>
+<line x1="689" y1="436" x2="877" y2="436" stroke="#FFD6E4" stroke-width="3"/>
+<line x1="711" y1="400" x2="899" y2="400" stroke="#FFD6E4" stroke-width="3"/>
+<circle cx="350" cy="569" r="5" fill="#FF0053" stroke="none" stroke-width="1"/>
+<circle cx="378" cy="540" r="5" fill="#FF0053" stroke="none" stroke-width="1"/>
+<circle cx="400" cy="546" r="5" fill="#FF0053" stroke="none" stroke-width="1"/>
+<circle cx="433" cy="523" r="5" fill="#FF0053" stroke="none" stroke-width="1"/>
+<circle cx="625" cy="550" r="5" fill="#FF0053" stroke="none" stroke-width="1"/>
+<circle cx="650" cy="520" r="5" fill="#FF0053" stroke="none" stroke-width="1"/>
+<circle cx="666" cy="509" r="5" fill="#FF0053" stroke="none" stroke-width="1"/>
+<circle cx="696" cy="485" r="5" fill="#FF0053" stroke="none" stroke-width="1"/>
+<circle cx="737" cy="453" r="5" fill="#FF0053" stroke="none" stroke-width="1"/>
+<circle cx="758" cy="438" r="5" fill="#FF0053" stroke="none" stroke-width="1"/>
+<circle cx="460" cy="471" r="5" fill="#FF0053" stroke="none" stroke-width="1"/>
+<circle cx="481" cy="464" r="5" fill="#FF0053" stroke="none" stroke-width="1"/>
+<circle cx="489" cy="454" r="5" fill="#FF0053" stroke="none" stroke-width="1"/>
+<circle cx="519" cy="435" r="5" fill="#FF0053" stroke="none" stroke-width="1"/>
+<path d="M485 455l53-30 26 33-48 30z" fill="#FF0053" opacity=".2" stroke="#FF0053" stroke-width="3"/>
+<line x1="790" y1="418" x2="790" y2="629" stroke="#310F53" stroke-width="3" stroke-dasharray="7 8"/>
+<text x="812" y="437" font-family="Montserrat,Arial,sans-serif" font-size="17" font-weight="650" fill="#310F53" text-anchor="start" >габарит</text>
+<text x="812" y="468" font-family="Montserrat,Arial,sans-serif" font-size="17" font-weight="650" fill="#FF0053" text-anchor="start" >объект</text>
+<rect x="1000" y="278" width="519" height="450" rx="24" fill="#FFF1F6" stroke="none" stroke-width="1"/>
+<text x="1040" y="330" font-family="Montserrat,Arial,sans-serif" font-size="17" font-weight="750" fill="#FF0053" text-anchor="start" >ЧТО НУЖНО</text>
+<text x="1040" y="392" font-family="Montserrat,Arial,sans-serif" font-size="26" font-weight="650" fill="#310F53" text-anchor="start" >Найти видимые точки</text><text x="1040" y="431" font-family="Montserrat,Arial,sans-serif" font-size="26" font-weight="650" fill="#310F53" text-anchor="start" >постороннего объекта</text><text x="1040" y="470" font-family="Montserrat,Arial,sans-serif" font-size="26" font-weight="650" fill="#310F53" text-anchor="start" >и проверить их положение</text><text x="1040" y="509" font-family="Montserrat,Arial,sans-serif" font-size="26" font-weight="650" fill="#310F53" text-anchor="start" >относительно рельсового пути.</text>
+<line x1="1040" y1="570" x2="1468" y2="570" stroke="#EADFE8" stroke-width="2"/>
+<text x="1040" y="619" font-family="Montserrat,Arial,sans-serif" font-size="19" font-weight="500" fill="#1C1D22" text-anchor="start" >Не пропустить малый предмет.</text><text x="1040" y="653" font-family="Montserrat,Arial,sans-serif" font-size="19" font-weight="500" fill="#1C1D22" text-anchor="start" >Не принять инфраструктуру за помеху.</text>
+<text x="1040" y="696" font-family="Montserrat,Arial,sans-serif" font-size="15" font-weight="700" fill="#716879" text-anchor="start" >ЦЕЛЬ — ВЫХОД ДЛЯ ОПЕРАТОРА</text>
+</svg>

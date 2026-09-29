@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+<defs><linearGradient id="bg" x1="0" x2="1" y1="1" y2="0"><stop stop-color="#310F53"/><stop offset="1" stop-color="#520978"/></linearGradient></defs>
+<rect width="1600" height="900" fill="url(#bg)"/>
+<circle cx="1315" cy="465" r="270" fill="none" stroke="#8A83D1" stroke-width="2" opacity=".7"/>
+<circle cx="1315" cy="465" r="207" fill="none" stroke="#8A83D1" stroke-width="2" opacity=".45"/>
+<path d="M1035 790 1164 144m110 646 44-646m113 646 34-646" stroke="#FFD6E4" stroke-width="7" opacity=".8"/>
+<path d="M1080 700h365m-348-95h370m-330-95h360m-307-95h349" stroke="#FF0053" stroke-width="5" opacity=".85"/>
+<text x="87" y="116" font-family="Montserrat,Arial,sans-serif" font-size="18" font-weight="700" fill="#FFD6E4" text-anchor="start" letter-spacing="2">METRO GUARD  ·  LЦТ 2026</text>
+<text x="82" y="312" font-family="Montserrat,Arial,sans-serif" font-size="57" font-weight="780" fill="#FFFFFF" text-anchor="start" >Следующий шаг</text>
+<text x="84" y="393" font-family="Montserrat,Arial,sans-serif" font-size="30" font-weight="650" fill="#FF4D83" text-anchor="start" >— измерить качество на правильных данных</text>
+<text x="88" y="504" font-family="Montserrat,Arial,sans-serif" font-size="20" font-weight="600" fill="#FFFFFF" text-anchor="start" >Контур габарита</text>
+<text x="88" y="544" font-family="Montserrat,Arial,sans-serif" font-size="20" font-weight="500" fill="#FFD6E4" text-anchor="start" >+ независимая разметка</text>
+<text x="88" y="632" font-family="Montserrat,Arial,sans-serif" font-size="23" font-weight="700" fill="#FFFFFF" text-anchor="start" >Вопросы?</text>
+<text x="88" y="680" font-family="Montserrat,Arial,sans-serif" font-size="18" font-weight="450" fill="#E8DCF0" text-anchor="start" >Контакты команды — добавьте перед выступлением.</text>
+<text x="88" y="838" font-family="Montserrat,Arial,sans-serif" font-size="15" font-weight="650" fill="#FFD6E4" text-anchor="start" >ПРОТОТИП ДЛЯ АНАЛИЗА · НЕ СРЕДСТВО УПРАВЛЕНИЯ ПОЕЗДОМ</text>
+</svg>

@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+<defs><linearGradient id="fade" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#FC3777"/><stop offset="1" stop-color="#FF0053"/></linearGradient></defs>
+<rect width="1600" height="900" fill="#FFF9FC"/>
+<path d="M0 0H1600V18H0Z" fill="#FF0053"/>
+<text x="82" y="91" font-family="Montserrat,Arial,sans-serif" font-size="17" font-weight="750" fill="#FF0053" text-anchor="start" letter-spacing="2.1">09 · ЧЕСТНАЯ ОЦЕНКА</text>
+<text x="82" y="160" font-family="Montserrat,Arial,sans-serif" font-size="42" font-weight="760" fill="#310F53" text-anchor="start" >Что доказано — и что ещё предстоит доказать</text>
+<circle cx="1513" cy="82" r="33" fill="#FFD6E4"/><path d="M1500 82h26m-13-13 13 13-13 13" stroke="#FF0053" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<line x1="82" y1="827" x2="1518" y2="827" stroke="#EADFE8" stroke-width="2"/>
+<text x="82" y="864" font-family="Montserrat,Arial,sans-serif" font-size="16" font-weight="650" fill="#716879" text-anchor="start" >METRO GUARD  ·  LIDAR / ROS 2</text>
+<text x="1518" y="864" font-family="Montserrat,Arial,sans-serif" font-size="16" font-weight="650" fill="#716879" text-anchor="end" >ЛЦТ 2026  ·  10</text>
+<rect x="82" y="224" width="681" height="468" rx="22" fill="#F1FAF5" stroke="none" stroke-width="1"/>
+<text x="124" y="275" font-family="Montserrat,Arial,sans-serif" font-size="16" font-weight="750" fill="#24764B" text-anchor="start" >ПОДТВЕРЖДЕНО ТЕКУЩИМИ ПРОВЕРКАМИ</text>
+<circle cx="128" cy="333" r="6" fill="#2E9660" stroke="none" stroke-width="1"/><text x="150" y="340" font-family="Montserrat,Arial,sans-serif" font-size="18" font-weight="500" fill="#1C1D22" text-anchor="start" >Декодирование предоставленных bag.</text>
+<circle cx="128" cy="394" r="6" fill="#2E9660" stroke="none" stroke-width="1"/><text x="150" y="401" font-family="Montserrat,Arial,sans-serif" font-size="18" font-weight="500" fill="#1C1D22" text-anchor="start" >Повторяемый offline-проход и экспорт.</text>
+<circle cx="128" cy="455" r="6" fill="#2E9660" stroke="none" stroke-width="1"/><text x="150" y="462" font-family="Montserrat,Arial,sans-serif" font-size="18" font-weight="500" fill="#1C1D22" text-anchor="start" >20 тестов ядра и интеграционная ROS 2 проверка.</text>
+<circle cx="128" cy="516" r="6" fill="#2E9660" stroke="none" stroke-width="1"/><text x="150" y="523" font-family="Montserrat,Arial,sans-serif" font-size="18" font-weight="500" fill="#1C1D22" text-anchor="start" >Исправлено обнаружение одного низкого объекта.</text>
+<circle cx="128" cy="577" r="6" fill="#2E9660" stroke="none" stroke-width="1"/><text x="150" y="584" font-family="Montserrat,Arial,sans-serif" font-size="18" font-weight="500" fill="#1C1D22" text-anchor="start" >Браузерный просмотр кадров и ручная разметка.</text>
+<rect x="805" y="224" width="713" height="468" rx="22" fill="#FFF0F6" stroke="none" stroke-width="1"/>
+<text x="847" y="275" font-family="Montserrat,Arial,sans-serif" font-size="16" font-weight="750" fill="#FF0053" text-anchor="start" >НЕ ЯВЛЯЕТСЯ МЕТРИКОЙ КАЧЕСТВА</text>
+<circle cx="851" cy="333" r="6" fill="#FF0053" stroke="none" stroke-width="1"/><text x="873" y="340" font-family="Montserrat,Arial,sans-serif" font-size="17" font-weight="500" fill="#1C1D22" text-anchor="start" >Precision / recall без ground truth неизвестны.</text>
+<circle cx="851" cy="394" r="6" fill="#FF0053" stroke="none" stroke-width="1"/><text x="873" y="401" font-family="Montserrat,Arial,sans-serif" font-size="17" font-weight="500" fill="#1C1D22" text-anchor="start" >Контур поезда и полная LiDAR-калибровка отсутствуют.</text>
+<circle cx="851" cy="455" r="6" fill="#FF0053" stroke="none" stroke-width="1"/><text x="873" y="462" font-family="Montserrat,Arial,sans-serif" font-size="17" font-weight="500" fill="#1C1D22" text-anchor="start" >Ложные тревоги на инфраструктуре не оценены независимо.</text>
+<circle cx="851" cy="516" r="6" fill="#FF0053" stroke="none" stroke-width="1"/><text x="873" y="523" font-family="Montserrat,Arial,sans-serif" font-size="17" font-weight="500" fill="#1C1D22" text-anchor="start" >Не проверены дальность и скрытые проезды.</text>
+<circle cx="851" cy="577" r="6" fill="#FF0053" stroke="none" stroke-width="1"/><text x="873" y="584" font-family="Montserrat,Arial,sans-serif" font-size="17" font-weight="500" fill="#1C1D22" text-anchor="start" >ROS bag playback ≠ живой LiDAR и безопасность торможения.</text>
+<rect x="82" y="724" width="1436" height="64" rx="15" fill="#310F53" stroke="none" stroke-width="1"/>
+<text x="112" y="765" font-family="Montserrat,Arial,sans-serif" font-size="19" font-weight="650" fill="#FFFFFF" text-anchor="start" >Следующий обязательный шаг: утвердить контур габарита и размечать отложенные проезды независимо.</text>
+</svg>

@@ -1,17 +1,23 @@
 # Архитектура и алгоритм
 
+> **Для жюри.** Один и тот же геометрический детектор обрабатывает облако точек офлайн или из ROS 2. Сначала он оценивает путь и предполагаемый габарит, затем ищет группы точек-кандидатов и подтверждает их в соседних кадрах. Обучение модели и GPU не требуются.
+>
+> **Проект:** [публичный код](https://github.com/kurorodev/lct2026_metro) · [веб-демонстрация](http://111.88.155.2/). [Локальный запуск](../README.md#локальный-запуск) выполняется на небольшом bag без установленного ROS 2.
+
+Ниже — схема и инженерные детали обработки.
+
 ```mermaid
 flowchart LR
-    Bag[ROS2 bag / SQLite] --> Offline[Offline reader]
-    Replay[ros2 bag play] --> Node[ROS2 subscriber]
-    Offline --> Decode[PointCloud2 validation + XYZ]
+    Bag[ROS 2 bag / SQLite] --> Offline[Офлайн-чтение]
+    Replay[ros2 bag play] --> Node[Подписчик ROS 2]
+    Offline --> Decode[Проверка PointCloud2 / XYZ]
     Node --> Decode
-    Decode --> Geometry[Surface / rails / corridor]
-    Geometry --> Cluster[Voxel components in clearance envelope]
-    Cluster --> Track[Causal temporal confirmation]
-    Track --> JSON[JSON results + diagnostics]
-    Track --> RViz[Canonical cloud + RViz markers]
-    JSON --> Dashboard[Browser review + evaluation]
+    Decode --> Geometry[Рельсы и расчётный коридор]
+    Geometry --> Cluster[Группы точек-кандидатов]
+    Cluster --> Track[Подтверждение между кадрами]
+    Track --> JSON[Результаты и диагностика]
+    Track --> RViz[Облако и маркеры RViz]
+    JSON --> Dashboard[Браузерный просмотр]
 ```
 
 `metro_guard/cloud.py` проверяет payload, offsets, datatype, count, endianness и шаги строк. Не предполагает, что точка занимает 12 или 16 байт: в данных она занимает 26 байт, а timestamp float64 начинается с несоосного offset 18. Поля описаны самим PointCloud2; [официальное определение](https://docs.ros2.org/latest/api/sensor_msgs/msg/PointCloud2.html).

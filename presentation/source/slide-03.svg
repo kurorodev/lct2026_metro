@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+<defs><linearGradient id="fade" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#FC3777"/><stop offset="1" stop-color="#FF0053"/></linearGradient></defs>
+<rect width="1600" height="900" fill="#FFF9FC"/>
+<path d="M0 0H1600V18H0Z" fill="#FF0053"/>
+<text x="82" y="91" font-family="Montserrat,Arial,sans-serif" font-size="17" font-weight="750" fill="#FF0053" text-anchor="start" letter-spacing="2.1">02 · КОМАНДА</text>
+<text x="82" y="160" font-family="Montserrat,Arial,sans-serif" font-size="42" font-weight="760" fill="#310F53" text-anchor="start" >Сильная сторона — проверяемость решения</text>
+<circle cx="1513" cy="82" r="33" fill="#FFD6E4"/><path d="M1500 82h26m-13-13 13 13-13 13" stroke="#FF0053" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<line x1="82" y1="827" x2="1518" y2="827" stroke="#EADFE8" stroke-width="2"/>
+<text x="82" y="864" font-family="Montserrat,Arial,sans-serif" font-size="16" font-weight="650" fill="#716879" text-anchor="start" >METRO GUARD  ·  LIDAR / ROS 2</text>
+<text x="1518" y="864" font-family="Montserrat,Arial,sans-serif" font-size="16" font-weight="650" fill="#716879" text-anchor="end" >ЛЦТ 2026  ·  03</text>
+<text x="84" y="220" font-family="Montserrat,Arial,sans-serif" font-size="21" font-weight="450" fill="#716879" text-anchor="start" >Этот слайд оставлен для обязательных данных команды: имена и контакты нельзя достоверно заполнить по репозиторию.</text>
+<rect x="82" y="280" width="335" height="250" rx="22" fill="#FFFFFF" stroke="#FFD6E4" stroke-width="2"/>
+<circle cx="119" cy="328" r="9" fill="#FF0053" stroke="none" stroke-width="1"/>
+<text x="142" y="335" font-family="Montserrat,Arial,sans-serif" font-size="16" font-weight="750" fill="#FF0053" text-anchor="start" >КАПИТАН</text>
+<text x="108" y="402" font-family="Montserrat,Arial,sans-serif" font-size="22" font-weight="650" fill="#310F53" text-anchor="start" >ФИО · специальность</text>
+<text x="108" y="455" font-family="Montserrat,Arial,sans-serif" font-size="17" font-weight="500" fill="#716879" text-anchor="start" >Контакт: заполнить</text>
+<line x1="108" y1="485" x2="387" y2="485" stroke="#EADFE8" stroke-width="1"/>
+<rect x="445" y="280" width="335" height="250" rx="22" fill="#FFFFFF" stroke="#FFD6E4" stroke-width="2"/>
+<circle cx="482" cy="328" r="9" fill="#8A83D1" stroke="none" stroke-width="1"/>
+<text x="505" y="335" font-family="Montserrat,Arial,sans-serif" font-size="16" font-weight="750" fill="#FF0053" text-anchor="start" >РАЗРАБОТКА</text>
+<text x="471" y="402" font-family="Montserrat,Arial,sans-serif" font-size="22" font-weight="650" fill="#310F53" text-anchor="start" >ФИО · роль в команде</text>
+<text x="471" y="455" font-family="Montserrat,Arial,sans-serif" font-size="17" font-weight="500" fill="#716879" text-anchor="start" >Контакт: заполнить</text>
+<line x1="471" y1="485" x2="750" y2="485" stroke="#EADFE8" stroke-width="1"/>
+<rect x="808" y="280" width="335" height="250" rx="22" fill="#FFFFFF" stroke="#FFD6E4" stroke-width="2"/>
+<circle cx="845" cy="328" r="9" fill="#FC3777" stroke="none" stroke-width="1"/>
+<text x="868" y="335" font-family="Montserrat,Arial,sans-serif" font-size="16" font-weight="750" fill="#FF0053" text-anchor="start" >ДАННЫЕ И ТЕСТЫ</text>
+<text x="834" y="402" font-family="Montserrat,Arial,sans-serif" font-size="22" font-weight="650" fill="#310F53" text-anchor="start" >ФИО · роль в команде</text>
+<text x="834" y="455" font-family="Montserrat,Arial,sans-serif" font-size="17" font-weight="500" fill="#716879" text-anchor="start" >Контакт: заполнить</text>
+<line x1="834" y1="485" x2="1113" y2="485" stroke="#EADFE8" stroke-width="1"/>
+<rect x="1171" y="280" width="335" height="250" rx="22" fill="#FFFFFF" stroke="#FFD6E4" stroke-width="2"/>
+<circle cx="1208" cy="328" r="9" fill="#310F53" stroke="none" stroke-width="1"/>
+<text x="1231" y="335" font-family="Montserrat,Arial,sans-serif" font-size="16" font-weight="750" fill="#FF0053" text-anchor="start" >ИНТЕГРАЦИЯ</text>
+<text x="1197" y="402" font-family="Montserrat,Arial,sans-serif" font-size="22" font-weight="650" fill="#310F53" text-anchor="start" >ФИО · роль в команде</text>
+<text x="1197" y="455" font-family="Montserrat,Arial,sans-serif" font-size="17" font-weight="500" fill="#716879" text-anchor="start" >Контакт: заполнить</text>
+<line x1="1197" y1="485" x2="1476" y2="485" stroke="#EADFE8" stroke-width="1"/>
+<rect x="82" y="574" width="1436" height="180" rx="22" fill="#310F53" stroke="none" stroke-width="1"/>
+<text x="119" y="622" font-family="Montserrat,Arial,sans-serif" font-size="16" font-weight="750" fill="#FFD6E4" text-anchor="start" >ВЫЗОВ ДЛЯ КОМАНДЫ</text>
+<text x="119" y="671" font-family="Montserrat,Arial,sans-serif" font-size="22" font-weight="500" fill="#FFFFFF" text-anchor="start" >Определить помеху по разреженному облаку точек в сложном тоннельном фоне;</text><text x="119" y="705" font-family="Montserrat,Arial,sans-serif" font-size="22" font-weight="500" fill="#FFFFFF" text-anchor="start" >проверить геометрию габарита и сохранить воспроизводимый путь от bag до результата.</text>
+</svg>

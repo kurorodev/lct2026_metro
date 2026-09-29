@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+<defs><linearGradient id="fade" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#FC3777"/><stop offset="1" stop-color="#FF0053"/></linearGradient></defs>
+<rect width="1600" height="900" fill="#FFF9FC"/>
+<path d="M0 0H1600V18H0Z" fill="#FF0053"/>
+<text x="82" y="91" font-family="Montserrat,Arial,sans-serif" font-size="17" font-weight="750" fill="#FF0053" text-anchor="start" letter-spacing="2.1">07 · ПРОВЕРКА НОВОГО BAG</text>
+<text x="82" y="160" font-family="Montserrat,Arial,sans-serif" font-size="42" font-weight="760" fill="#310F53" text-anchor="start" >Настроили чувствительность к низкому предмету</text>
+<circle cx="1513" cy="82" r="33" fill="#FFD6E4"/><path d="M1500 82h26m-13-13 13 13-13 13" stroke="#FF0053" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<line x1="82" y1="827" x2="1518" y2="827" stroke="#EADFE8" stroke-width="2"/>
+<text x="82" y="864" font-family="Montserrat,Arial,sans-serif" font-size="16" font-weight="650" fill="#716879" text-anchor="start" >METRO GUARD  ·  LIDAR / ROS 2</text>
+<text x="1518" y="864" font-family="Montserrat,Arial,sans-serif" font-size="16" font-weight="650" fill="#716879" text-anchor="end" >ЛЦТ 2026  ·  08</text>
+<text x="85" y="215" font-family="Montserrat,Arial,sans-serif" font-size="19" font-weight="500" fill="#716879" text-anchor="start" >10 контрольных кадров · point matching / визуальная проверка · не независимая разметка всего проезда</text>
+<rect x="82" y="251" width="880" height="450" rx="20" fill="#FFFFFF" stroke="#FFD6E4" stroke-width="2"/>
+<text x="117" y="298" font-family="Montserrat,Arial,sans-serif" font-size="16" font-weight="750" fill="#FF0053" text-anchor="start" >СОПОСТАВЛЕНИЕ НА КОНТРОЛЬНЫХ КАДРАХ</text>
+<text x="356" y="360" font-family="Montserrat,Arial,sans-serif" font-size="17" font-weight="650" fill="#716879" text-anchor="middle" >Исходный профиль</text>
+<text x="634" y="360" font-family="Montserrat,Arial,sans-serif" font-size="17" font-weight="650" fill="#716879" text-anchor="middle" >Профиль LiDAR</text>
+<text x="125" y="400" font-family="Montserrat,Arial,sans-serif" font-size="15" font-weight="650" fill="#716879" text-anchor="start" >№ объекта</text>
+<text x="141" y="432" font-family="Montserrat,Arial,sans-serif" font-size="15" font-weight="550" fill="#1C1D22" text-anchor="start" >1</text>
+<circle cx="356" cy="427" r="7" fill="#8A83D1" stroke="none" stroke-width="1"/>
+<circle cx="634" cy="427" r="7" fill="#FF0053" stroke="none" stroke-width="1"/>
+<text x="141" y="456" font-family="Montserrat,Arial,sans-serif" font-size="15" font-weight="550" fill="#1C1D22" text-anchor="start" >2</text>
+<circle cx="356" cy="451" r="7" fill="#8A83D1" stroke="none" stroke-width="1"/>
+<circle cx="634" cy="451" r="7" fill="#FF0053" stroke="none" stroke-width="1"/>
+<text x="141" y="480" font-family="Montserrat,Arial,sans-serif" font-size="15" font-weight="550" fill="#1C1D22" text-anchor="start" >3</text>
+<circle cx="356" cy="475" r="7" fill="#8A83D1" stroke="none" stroke-width="1"/>
+<circle cx="634" cy="475" r="7" fill="#FF0053" stroke="none" stroke-width="1"/>
+<text x="141" y="504" font-family="Montserrat,Arial,sans-serif" font-size="15" font-weight="550" fill="#1C1D22" text-anchor="start" >4</text>
+<circle cx="356" cy="499" r="7" fill="#8A83D1" stroke="none" stroke-width="1"/>
+<circle cx="634" cy="499" r="7" fill="#FF0053" stroke="none" stroke-width="1"/>
+<text x="141" y="528" font-family="Montserrat,Arial,sans-serif" font-size="15" font-weight="550" fill="#1C1D22" text-anchor="start" >5</text>
+<circle cx="356" cy="523" r="7" fill="#8A83D1" stroke="none" stroke-width="1"/>
+<circle cx="634" cy="523" r="7" fill="#FF0053" stroke="none" stroke-width="1"/>
+<text x="141" y="552" font-family="Montserrat,Arial,sans-serif" font-size="15" font-weight="550" fill="#1C1D22" text-anchor="start" >6</text>
+<circle cx="356" cy="547" r="7" fill="#8A83D1" stroke="none" stroke-width="1"/>
+<circle cx="634" cy="547" r="7" fill="#FF0053" stroke="none" stroke-width="1"/>
+<text x="141" y="576" font-family="Montserrat,Arial,sans-serif" font-size="15" font-weight="550" fill="#1C1D22" text-anchor="start" >7</text>
+<circle cx="356" cy="571" r="7" fill="#8A83D1" stroke="none" stroke-width="1"/>
+<circle cx="634" cy="571" r="7" fill="#FF0053" stroke="none" stroke-width="1"/>
+<text x="141" y="600" font-family="Montserrat,Arial,sans-serif" font-size="15" font-weight="550" fill="#1C1D22" text-anchor="start" >8</text>
+<circle cx="356" cy="595" r="7" fill="#8A83D1" stroke="none" stroke-width="1"/>
+<circle cx="634" cy="595" r="7" fill="#FF0053" stroke="none" stroke-width="1"/>
+<text x="141" y="624" font-family="Montserrat,Arial,sans-serif" font-size="15" font-weight="550" fill="#1C1D22" text-anchor="start" >9</text>
+<circle cx="356" cy="619" r="7" fill="#E8E2E8" stroke="none" stroke-width="1"/>
+<circle cx="634" cy="619" r="7" fill="#FF0053" stroke="none" stroke-width="1"/>
+<text x="141" y="648" font-family="Montserrat,Arial,sans-serif" font-size="15" font-weight="550" fill="#1C1D22" text-anchor="start" >10</text>
+<circle cx="356" cy="643" r="7" fill="#8A83D1" stroke="none" stroke-width="1"/>
+<circle cx="634" cy="643" r="7" fill="#FF0053" stroke="none" stroke-width="1"/>
+<line x1="234" y1="412" x2="234" y2="680" stroke="#EEE5EC" stroke-width="1"/>
+<text x="356" y="690" font-family="Montserrat,Arial,sans-serif" font-size="17" font-weight="750" fill="#310F53" text-anchor="middle" >9 / 10</text>
+<text x="634" y="690" font-family="Montserrat,Arial,sans-serif" font-size="17" font-weight="750" fill="#FF0053" text-anchor="middle" >10 / 10</text>
+<rect x="991" y="251" width="527" height="450" rx="20" fill="#310F53" stroke="none" stroke-width="1"/>
+<text x="1030" y="298" font-family="Montserrat,Arial,sans-serif" font-size="16" font-weight="750" fill="#FFD6E4" text-anchor="start" >ЧТО ИЗМЕНИЛИ</text>
+<text x="1030" y="377" font-family="Montserrat,Arial,sans-serif" font-size="33" font-weight="760" fill="#FFFFFF" text-anchor="start" >№ 9</text>
+<text x="1122" y="375" font-family="Montserrat,Arial,sans-serif" font-size="17" font-weight="550" fill="#FFD6E4" text-anchor="start" >длинный низкий предмет</text>
+<text x="1030" y="421" font-family="Montserrat,Arial,sans-serif" font-size="18" font-weight="650" fill="#FFFFFF" text-anchor="start" >на рельсах: пропуск → подтверждён</text>
+<line x1="1030" y1="458" x2="1477" y2="458" stroke="#8A83D1" stroke-width="2"/>
+<text x="1030" y="502" font-family="Montserrat,Arial,sans-serif" font-size="17" font-weight="500" fill="#FFFFFF" text-anchor="start" >2 объекта, описанных как внешние,</text><text x="1030" y="531" font-family="Montserrat,Arial,sans-serif" font-size="17" font-weight="500" fill="#FFFFFF" text-anchor="start" >остались неоднозначными: их точки</text><text x="1030" y="560" font-family="Montserrat,Arial,sans-serif" font-size="17" font-weight="500" fill="#FFFFFF" text-anchor="start" >попадают в предварительный контур.</text>
+<text x="1030" y="632" font-family="Montserrat,Arial,sans-serif" font-size="18" font-weight="750" fill="#FFD6E4" text-anchor="start" >Точность 10/10 не заявляется.</text>
+<text x="1030" y="671" font-family="Montserrat,Arial,sans-serif" font-size="14" font-weight="500" fill="#E5D6EE" text-anchor="start" >Источник: контрольные кадры bag, не события.</text>
+</svg>

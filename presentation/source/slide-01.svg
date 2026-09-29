@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+<defs><linearGradient id="bg" x1="0" x2="1" y1="1" y2="0"><stop stop-color="#310F53"/><stop offset="1" stop-color="#51106B"/></linearGradient><linearGradient id="hot"><stop stop-color="#FC3777"/><stop offset="1" stop-color="#FF0053"/></linearGradient></defs>
+<rect width="1600" height="900" fill="url(#bg)"/>
+<circle cx="1370" cy="150" r="330" fill="#520978" opacity=".65"/>
+<circle cx="1410" cy="140" r="228" fill="none" stroke="#8A83D1" stroke-width="2" opacity=".55"/>
+<circle cx="1410" cy="140" r="170" fill="none" stroke="#8A83D1" stroke-width="2" opacity=".35"/>
+<path d="M920 900 1300 420m-80 480 325-480m-30 480 250-480" stroke="#FFD6E4" stroke-width="8" opacity=".8"/>
+<path d="M1020 805h470m-417-75h460m-361-75h410m-311-75h365m-267-75h315" stroke="#FC3777" stroke-width="5" opacity=".85"/>
+<rect x="84" y="83" width="338" height="43" rx="21" fill="#FFFFFF" opacity=".12"/>
+<text x="105" y="112" font-family="Montserrat,Arial,sans-serif" font-size="17" font-weight="700" fill="#FFD6E4" text-anchor="start" letter-spacing="2">ИНЖЕНЕРНОЕ РЕШЕНИЕ  /  2026</text>
+<text x="83" y="313" font-family="Montserrat,Arial,sans-serif" font-size="91" font-weight="780" fill="#FFFFFF" text-anchor="start" >Metro</text>
+<text x="83" y="413" font-family="Montserrat,Arial,sans-serif" font-size="91" font-weight="780" fill="#FF4D83" text-anchor="start" >Guard</text>
+<text x="88" y="490" font-family="Montserrat,Arial,sans-serif" font-size="24" font-weight="700" fill="#FFD6E4" text-anchor="start" letter-spacing="1">ПОИСК ПРЕПЯТСТВИЙ В ГАБАРИТЕ ПУТИ</text>
+<text x="88" y="554" font-family="Montserrat,Arial,sans-serif" font-size="22" font-weight="450" fill="#FFFFFF" text-anchor="start" >3D LiDAR · геометрия пути · временное подтверждение</text>
+<rect x="87" y="629" width="540" height="87" rx="17" fill="#FFFFFF" opacity=".1" stroke="#8A83D1"/>
+<text x="112" y="665" font-family="Montserrat,Arial,sans-serif" font-size="15" font-weight="700" fill="#FFD6E4" text-anchor="start" >КОМАНДА / АВТОРЫ</text>
+<text x="112" y="696" font-family="Montserrat,Arial,sans-serif" font-size="21" font-weight="500" fill="#FFFFFF" text-anchor="start" >Добавьте состав команды и контакты</text>
+<text x="88" y="841" font-family="Montserrat,Arial,sans-serif" font-size="16" font-weight="650" fill="#FFD6E4" text-anchor="start" >ПРОТОТИП · ОФЛАЙН-АНАЛИЗ · ROS 2</text>
+</svg>
